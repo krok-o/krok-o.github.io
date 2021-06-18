@@ -11,28 +11,28 @@
 	"title": "Basics",
 	"tags": [],
 	"description": "",
-	"content": "Chapter 1 Basics Discover what this Hugo theme is all about and the core-concepts behind it.\n"
+	"content": "Chapter 2 Basics Being here to understand what Krok is and how to use it.\n"
 },
 {
 	"uri": "https://krok-o.github.io/commands/",
 	"title": "Commands",
 	"tags": [],
 	"description": "",
-	"content": "Chapter 1 Commands Here, you can find a list of maintained and available commands for Krok. Commands are plugins which Krok can execute on a WebHook.\n"
+	"content": "Chapter 3 Commands Here, you can find a list of maintained and available commands for Krok. Commands are plugins which Krok can execute on a WebHook.\n"
 },
 {
 	"uri": "https://krok-o.github.io/tutorial/",
 	"title": "Tutorials",
 	"tags": [],
 	"description": "",
-	"content": "Chapter 1 Tutorials Discover some usages and tutorials using Krok.\n"
+	"content": "Chapter 4 Tutorials Discover some usages and tutorials using Krok.\n"
 },
 {
 	"uri": "https://krok-o.github.io/basics/requirements/",
 	"title": "Requirements",
 	"tags": [],
 	"description": "",
-	"content": "These requirements depend on the way Krok is deployed.\n"
+	"content": "Krok has the following requirements and configuration options it needs in order to run.\nDatabase Krok requires a postgres database to store the following things:\n repository information command information user information pipelines and events  Environment Every setting Krok has is defined in the root command as argument.\n"
 },
 {
 	"uri": "https://krok-o.github.io/basics/installation/",
@@ -49,6 +49,27 @@
 	"content": "Configuration options for the root command These are the currently configurable options for Krok:\nMake sure to check out the Release section of Krok for the latest built binaries for all supported platforms. Krok server Usage: krok [flags] Flags: --auto-tls --auto-tls --cache-dir string --cache-dir /home/user/.server/.cache --db-hostname string --db-hostname localhost:5432 (default \u0026quot;localhost:5432\u0026quot;) --db-name string --db-name krok (default \u0026quot;krok\u0026quot;) --db-password string --db-password password123 (default \u0026quot;password123\u0026quot;) --db-username string --db-username krok (default \u0026quot;krok\u0026quot;) --debug --debug --default-maximum-command-runtime int Given in seconds. (default 30) --email-apikey string --email-apikey ******** --email-domain string --email-domain krok.com --file-vault-location string --file-vault-location /tmp/krok/vault (default \u0026quot;/tmp/krok/vault\u0026quot;) --google-client-id string --google-client-id my-client-id} --google-client-secret string --google-client-secret my-client-secret} -h, --help help for krok --hookbase string --hookbase localhost (default \u0026quot;localhost\u0026quot;) --hostname string --hostname localhost:9998 (default \u0026quot;localhost:9998\u0026quot;) --plugin-location string --plugin-location /tmp/krok/plugins (default \u0026quot;/tmp/krok/plugins\u0026quot;) --proto string --proto http (default \u0026quot;http\u0026quot;) --server-crt-path string --server-crt-path /home/user/.server/server.crt --server-key-path string --server-key-path /home/user/.server/server.key --token string --token \u0026lt;somerandomdata\u0026gt; Let\u0026rsquo;s go over them one section at a time:\n --auto-tls --auto-tls --cache-dir string --cache-dir /home/user/.server/.cache This sets up the underlying web server, Echo, to use automatic TLS settings.\n --db-hostname string --db-hostname localhost:5432 (default \u0026quot;localhost:5432\u0026quot;) --db-name string --db-name krok (default \u0026quot;krok\u0026quot;) --db-password string --db-password password123 (default \u0026quot;password123\u0026quot;) --db-username string --db-username krok (default \u0026quot;krok\u0026quot;) Krok uses a postgres database to store various data. These are all settings to reach the database.\n --default-maximum-command-runtime int Given in seconds. (default 30) The maximum seconds a command can run. In case of long running commands, this should be set to a higher default.\n --email-apikey string --email-apikey ******** --email-domain string --email-domain krok.com As of this writing, email notifications are not yet implemented, but they, eventually, will be. In that case, these are Mailgun settings which Krok is using.\n"
 },
 {
+	"uri": "https://krok-o.github.io/basics/installation/_kubernetes/",
+	"title": "Kubernetes",
+	"tags": [],
+	"description": "",
+	"content": "Using Kubernetes.\n"
+},
+{
+	"uri": "https://krok-o.github.io/basics/installation/_docker/",
+	"title": "Docker",
+	"tags": [],
+	"description": "",
+	"content": "Using Docker and docker-compose.\n"
+},
+{
+	"uri": "https://krok-o.github.io/basics/installation/_dev/",
+	"title": "Development",
+	"tags": [],
+	"description": "",
+	"content": "Building from source and using a test database.\n"
+},
+{
 	"uri": "https://krok-o.github.io/categories/",
 	"title": "Categories",
 	"tags": [],
@@ -60,7 +81,7 @@
 	"title": "Krok Documentation",
 	"tags": [],
 	"description": "",
-	"content": "Krok Documentation This is the main site for all thing related to Krok.\n"
+	"content": "Krok Documentation This is the main site for all things related to Krok.\n"
 },
 {
 	"uri": "https://krok-o.github.io/tags/",

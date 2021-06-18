@@ -6,5 +6,32 @@
     <description>Recent content in Krok Documentation on Documentation for Krok</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language><atom:link href="https://krok-o.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubernetes</title>
+      <link>https://krok-o.github.io/basics/installation/_kubernetes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://krok-o.github.io/basics/installation/_kubernetes/</guid>
+      <description>Using Kubernetes.</description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>https://krok-o.github.io/basics/installation/_docker/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://krok-o.github.io/basics/installation/_docker/</guid>
+      <description>Using Docker and docker-compose.</description>
+    </item>
+    
+    <item>
+      <title>Development</title>
+      <link>https://krok-o.github.io/basics/installation/_dev/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://krok-o.github.io/basics/installation/_dev/</guid>
+      <description>Building from source and using a test database.</description>
+    </item>
+    
   </channel>
 </rss>
