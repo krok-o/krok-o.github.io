@@ -49,21 +49,21 @@
 	"content": "Configuration options for the root command These are the currently configurable options for Krok:\nMake sure to check out the Release section of Krok for the latest built binaries for all supported platforms. Krok server Usage: krok [flags] Flags: --auto-tls --auto-tls --cache-dir string --cache-dir /home/user/.server/.cache --db-hostname string --db-hostname localhost:5432 (default \u0026quot;localhost:5432\u0026quot;) --db-name string --db-name krok (default \u0026quot;krok\u0026quot;) --db-password string --db-password password123 (default \u0026quot;password123\u0026quot;) --db-username string --db-username krok (default \u0026quot;krok\u0026quot;) --debug --debug --default-maximum-command-runtime int Given in seconds. (default 30) --email-apikey string --email-apikey ******** --email-domain string --email-domain krok.com --file-vault-location string --file-vault-location /tmp/krok/vault (default \u0026quot;/tmp/krok/vault\u0026quot;) --google-client-id string --google-client-id my-client-id} --google-client-secret string --google-client-secret my-client-secret} -h, --help help for krok --hookbase string --hookbase localhost (default \u0026quot;localhost\u0026quot;) --hostname string --hostname localhost:9998 (default \u0026quot;localhost:9998\u0026quot;) --plugin-location string --plugin-location /tmp/krok/plugins (default \u0026quot;/tmp/krok/plugins\u0026quot;) --proto string --proto http (default \u0026quot;http\u0026quot;) --server-crt-path string --server-crt-path /home/user/.server/server.crt --server-key-path string --server-key-path /home/user/.server/server.key --token string --token \u0026lt;somerandomdata\u0026gt; Let\u0026rsquo;s go over them one section at a time:\n --auto-tls --auto-tls --cache-dir string --cache-dir /home/user/.server/.cache This sets up the underlying web server, Echo, to use automatic TLS settings.\n --db-hostname string --db-hostname localhost:5432 (default \u0026quot;localhost:5432\u0026quot;) --db-name string --db-name krok (default \u0026quot;krok\u0026quot;) --db-password string --db-password password123 (default \u0026quot;password123\u0026quot;) --db-username string --db-username krok (default \u0026quot;krok\u0026quot;) Krok uses a postgres database to store various data. These are all settings to reach the database.\n --default-maximum-command-runtime int Given in seconds. (default 30) The maximum seconds a command can run. In case of long running commands, this should be set to a higher default.\n --email-apikey string --email-apikey ******** --email-domain string --email-domain krok.com As of this writing, email notifications are not yet implemented, but they, eventually, will be. In that case, these are Mailgun settings which Krok is using.\n"
 },
 {
-	"uri": "https://krok.app/basics/installation/_kubernetes/",
+	"uri": "https://krok.app/basics/installation/kubernetes/",
 	"title": "Kubernetes",
 	"tags": [],
 	"description": "",
 	"content": "Using Kubernetes.\n"
 },
 {
-	"uri": "https://krok.app/basics/installation/_docker/",
+	"uri": "https://krok.app/basics/installation/docker/",
 	"title": "Docker",
 	"tags": [],
 	"description": "",
 	"content": "Using Docker and docker-compose.\n"
 },
 {
-	"uri": "https://krok.app/basics/installation/_dev/",
+	"uri": "https://krok.app/basics/installation/dev/",
 	"title": "Development",
 	"tags": [],
 	"description": "",
