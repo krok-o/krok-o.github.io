@@ -2,30 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://krok-o.github.io/api_reference/</loc>
+    <loc>https://krok.app/api_reference/</loc>
   </url><url>
-    <loc>https://krok-o.github.io/basics/</loc>
+    <loc>https://krok.app/basics/</loc>
   </url><url>
-    <loc>https://krok-o.github.io/commands/</loc>
+    <loc>https://krok.app/commands/</loc>
   </url><url>
-    <loc>https://krok-o.github.io/tutorial/</loc>
+    <loc>https://krok.app/tutorial/</loc>
   </url><url>
-    <loc>https://krok-o.github.io/basics/requirements/</loc>
+    <loc>https://krok.app/basics/requirements/</loc>
   </url><url>
-    <loc>https://krok-o.github.io/basics/installation/</loc>
+    <loc>https://krok.app/basics/installation/</loc>
   </url><url>
-    <loc>https://krok-o.github.io/basics/configuration/</loc>
+    <loc>https://krok.app/basics/configuration/</loc>
   </url><url>
-    <loc>https://krok-o.github.io/basics/installation/_kubernetes/</loc>
+    <loc>https://krok.app/basics/installation/_kubernetes/</loc>
   </url><url>
-    <loc>https://krok-o.github.io/basics/installation/_docker/</loc>
+    <loc>https://krok.app/basics/installation/_docker/</loc>
   </url><url>
-    <loc>https://krok-o.github.io/basics/installation/_dev/</loc>
+    <loc>https://krok.app/basics/installation/_dev/</loc>
   </url><url>
-    <loc>https://krok-o.github.io/categories/</loc>
+    <loc>https://krok.app/categories/</loc>
   </url><url>
-    <loc>https://krok-o.github.io/</loc>
+    <loc>https://krok.app/</loc>
   </url><url>
-    <loc>https://krok-o.github.io/tags/</loc>
+    <loc>https://krok.app/tags/</loc>
   </url>
 </urlset>
