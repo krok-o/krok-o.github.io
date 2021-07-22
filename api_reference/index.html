@@ -12,20 +12,20 @@
     <title>API reference :: Documentation for Krok</title>
 
     
-    <link href="/css/nucleus.css?1626873883" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1626873883" rel="stylesheet">
-    <link href="/css/hybrid.css?1626873883" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1626873883" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1626873883" rel="stylesheet">
-    <link href="/css/auto-complete.css?1626873883" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1626873883" rel="stylesheet">
-    <link href="/css/theme.css?1626873883" rel="stylesheet">
-    <link href="/css/tabs.css?1626873883" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1626873883" rel="stylesheet">
+    <link href="/css/nucleus.css?1626966632" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1626966632" rel="stylesheet">
+    <link href="/css/hybrid.css?1626966632" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1626966632" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1626966632" rel="stylesheet">
+    <link href="/css/auto-complete.css?1626966632" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1626966632" rel="stylesheet">
+    <link href="/css/theme.css?1626966632" rel="stylesheet">
+    <link href="/css/tabs.css?1626966632" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1626966632" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1626873883"></script>
+    <script src="/js/jquery-3.3.1.min.js?1626966632"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -90,14 +90,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1626873883"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1626873883"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1626966632"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1626966632"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/krok.app";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1626873883"></script>
+<script type="text/javascript" src="/js/search.js?1626966632"></script>
 
     
   </div>
@@ -511,8 +511,4409 @@
 
 
 	<h3 id="chapter-1">Chapter 1</h3>
-<h1 id="api">API</h1>
-<p>Here, you can find all the available API endpoints and their respective payloads.</p>
+<h1 id="krok">Krok.</h1>
+<p>Documentation of the Krok API.</p>
+<h2 id="information">Information</h2>
+<h3 id="version">Version</h3>
+<p>0.0.1</p>
+<h3 id="license">License</h3>
+<p><a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0</a></p>
+<h2 id="content-negotiation">Content negotiation</h2>
+<h3 id="uri-schemes">URI Schemes</h3>
+<ul>
+<li>http</li>
+</ul>
+<h3 id="consumes">Consumes</h3>
+<ul>
+<li>application/json</li>
+</ul>
+<h3 id="produces">Produces</h3>
+<ul>
+<li>application/json</li>
+</ul>
+<h2 id="all-endpoints">All endpoints</h2>
+<h3 id="operations">operations</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>URI</th>
+<th>Name</th>
+<th>Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td>/rest/api/1/command/add-command-rel-for-platform/{cmdid}/{repoid}</td>
+<td><a href="#add-command-rel-for-platform-command">add command rel for platform command</a></td>
+<td>Adds a connection to a platform for a command. Defines what platform a command supports. These commands will only be able to run for those platforms.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/rest/api/1/command/add-command-rel-for-repository/{cmdid}/{repoid}</td>
+<td><a href="#add-command-rel-for-repository-command">add command rel for repository command</a></td>
+<td>Add a connection to a repository. This will make this command to be executed for events for that repository.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/rest/api/1/user/apikey/generate/{name}</td>
+<td><a href="#create-api-key">create Api key</a></td>
+<td>Creates an api key pair for a given user.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/rest/api/1/repository</td>
+<td><a href="#create-repository">create repository</a></td>
+<td></td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/rest/api/1/vault/secret</td>
+<td><a href="#create-secret">create secret</a></td>
+<td>Create a new secure secret.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/rest/api/1/user</td>
+<td><a href="#create-user">create user</a></td>
+<td></td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/rest/api/1/vcs-token</td>
+<td><a href="#create-vcs-token">create vcs token</a></td>
+<td>Create a new token for a platform like Github, Gitlab, Gitea&hellip;</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>/rest/api/1/user/apikey/delete/{keyid}</td>
+<td><a href="#delete-api-key">delete Api key</a></td>
+<td>Deletes a set of api keys for a given user with a given id.</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>/rest/api/1/command/{id}</td>
+<td><a href="#delete-command">delete command</a></td>
+<td>Deletes given command.</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>/rest/api/1/command/settings/{id}</td>
+<td><a href="#delete-command-setting">delete command setting</a></td>
+<td>Deletes a given command setting.</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>/rest/api/1/repository/{id}</td>
+<td><a href="#delete-repository">delete repository</a></td>
+<td>Deletes the given repository.</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>/rest/api/1/vault/secret/{name}</td>
+<td><a href="#delete-secret">delete secret</a></td>
+<td>Deletes the given secret.</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>/rest/api/1/user/{id}</td>
+<td><a href="#delete-user">delete user</a></td>
+<td>Deletes the given user.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/rest/api/1/user/apikey/{keyid}</td>
+<td><a href="#get-api-keys">get Api keys</a></td>
+<td>Returns a given api key.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/rest/api/1/command/{id}</td>
+<td><a href="#get-command">get command</a></td>
+<td>Returns a specific command.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/rest/api/1/command/run/{id}</td>
+<td><a href="#get-command-run">get command run</a></td>
+<td>Returns details about a command run.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/rest/api/1/command/settings/{id}</td>
+<td><a href="#get-command-setting">get command setting</a></td>
+<td>Get a specific setting.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/rest/api/1/event/{id}</td>
+<td><a href="#get-event">get event</a></td>
+<td>Get a specific event.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/rest/api/1/repository/{id}</td>
+<td><a href="#get-repository">get repository</a></td>
+<td>Gets the repository with the corresponding ID.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/rest/api/1/vault/secret/{name}</td>
+<td><a href="#get-secret">get secret</a></td>
+<td>Get a specific secret.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/rest/api/1/get-token</td>
+<td><a href="#get-token">get token</a></td>
+<td>Creates a JWT token for a given api key pair.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/rest/api/1/user/{id}</td>
+<td><a href="#get-user">get user</a></td>
+<td>Gets the user with the corresponding ID.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/rest/api/1/hooks/{rid}/{vid}/callback</td>
+<td><a href="#hook-handler">hook handler</a></td>
+<td>Handle the hooks created by the platform.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/rest/api/1/user/apikey</td>
+<td><a href="#list-api-keys">list Api keys</a></td>
+<td>Lists all api keys for a given user.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/rest/api/1/command/{id}/settings</td>
+<td><a href="#list-command-settings">list command settings</a></td>
+<td>List settings for a command.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/rest/api/1/commands</td>
+<td><a href="#list-commands">list commands</a></td>
+<td></td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/rest/api/1/events/{repoid}</td>
+<td><a href="#list-events">list events</a></td>
+<td>List events for a repository.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/rest/api/1/repositories</td>
+<td><a href="#list-repositories">list repositories</a></td>
+<td></td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/rest/api/1/vault/secrets</td>
+<td><a href="#list-secrets">list secrets</a></td>
+<td>List all settings without the values.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/rest/api/1/supported-platforms</td>
+<td><a href="#list-supported-platforms">list supported platforms</a></td>
+<td>Lists all supported platforms.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/rest/api/1/users</td>
+<td><a href="#list-users">list users</a></td>
+<td></td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/rest/api/1/auth/refresh</td>
+<td><a href="#refresh-token">refresh token</a></td>
+<td>Refresh the authentication token.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/rest/api/1/command/remove-command-rel-for-platform/{cmdid}/{repoid}</td>
+<td><a href="#remove-command-rel-for-platform-command">remove command rel for platform command</a></td>
+<td>Remove a relationship to a platform. This command will no longer be running for that platform events.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/rest/api/1/command/remove-command-rel-for-repository/{cmdid}/{repoid}</td>
+<td><a href="#remove-command-rel-for-repository-command">remove command rel for repository command</a></td>
+<td>Remove a relationship to a repository. This command will no longer be running for that repository events.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/rest/api/1/command/update</td>
+<td><a href="#update-command">update command</a></td>
+<td>Updates a given command.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/rest/api/1/command/settings/update</td>
+<td><a href="#update-command-setting">update command setting</a></td>
+<td>Create a new command setting.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/rest/api/1/repository/update</td>
+<td><a href="#update-repository">update repository</a></td>
+<td>Updates an existing repository.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/rest/api/1/vault/secret/update</td>
+<td><a href="#update-secret">update secret</a></td>
+<td>Updates an existing secret.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/rest/api/1/user/update</td>
+<td><a href="#update-user">update user</a></td>
+<td>Updates an existing user.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/rest/api/1/command</td>
+<td><a href="#upload-command">upload command</a></td>
+<td>Upload a command. To set up anything for the command, like schedules etc,</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/rest/api/1/auth/callback</td>
+<td><a href="#user-callback">user callback</a></td>
+<td>This is the url to which Google calls back after a successful login.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/rest/api/1/auth/login</td>
+<td><a href="#user-login">user login</a></td>
+<td>User login.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="paths">Paths</h2>
+<h3 id="span-idadd-command-rel-for-platform-commandspan-adds-a-connection-to-a-platform-for-a-command-defines-what-platform-a-command-supports-these-commands-will-only-be-able-to-run-for-those-platforms-addcommandrelforplatformcommand"><!-- raw HTML omitted --><!-- raw HTML omitted --> Adds a connection to a platform for a command. Defines what platform a command supports. These commands will only be able to run for those platforms. (<em>addCommandRelForPlatformCommand</em>)</h3>
+<pre><code>POST /rest/api/1/command/add-command-rel-for-platform/{cmdid}/{repoid}
+</code></pre><h4 id="parameters">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cmdid</td>
+<td><code>path</code></td>
+<td>int (formatted integer)</td>
+<td><code>int64</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>repoid</td>
+<td><code>path</code></td>
+<td>int (formatted integer)</td>
+<td><code>int64</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#add-command-rel-for-platform-command-200">200</a></td>
+<td>OK</td>
+<td>successfully added relationship</td>
+<td style="text-align:center"></td>
+<td><a href="#add-command-rel-for-platform-command-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#add-command-rel-for-platform-command-400">400</a></td>
+<td>Bad Request</td>
+<td>invalid ids or platform not found</td>
+<td style="text-align:center"></td>
+<td><a href="#add-command-rel-for-platform-command-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#add-command-rel-for-platform-command-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to add command relationship to platform</td>
+<td style="text-align:center"></td>
+<td><a href="#add-command-rel-for-platform-command-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<h5 id="span-idadd-command-rel-for-platform-command-200span-200---successfully-added-relationship"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200 - successfully added relationship</h5>
+<p>Status: OK</p>
+<h6 id="span-idadd-command-rel-for-platform-command-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h5 id="span-idadd-command-rel-for-platform-command-400span-400---invalid-ids-or-platform-not-found"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - invalid ids or platform not found</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-idadd-command-rel-for-platform-command-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idadd-command-rel-for-platform-command-500span-500---failed-to-add-command-relationship-to-platform"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to add command relationship to platform</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idadd-command-rel-for-platform-command-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idadd-command-rel-for-repository-commandspan-add-a-connection-to-a-repository-this-will-make-this-command-to-be-executed-for-events-for-that-repository-addcommandrelforrepositorycommand"><!-- raw HTML omitted --><!-- raw HTML omitted --> Add a connection to a repository. This will make this command to be executed for events for that repository. (<em>addCommandRelForRepositoryCommand</em>)</h3>
+<pre><code>POST /rest/api/1/command/add-command-rel-for-repository/{cmdid}/{repoid}
+</code></pre><h4 id="parameters-1">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cmdid</td>
+<td><code>path</code></td>
+<td>int (formatted integer)</td>
+<td><code>int64</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>repoid</td>
+<td><code>path</code></td>
+<td>int (formatted integer)</td>
+<td><code>int64</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-1">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#add-command-rel-for-repository-command-200">200</a></td>
+<td>OK</td>
+<td>successfully added relationship</td>
+<td style="text-align:center"></td>
+<td><a href="#add-command-rel-for-repository-command-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#add-command-rel-for-repository-command-400">400</a></td>
+<td>Bad Request</td>
+<td>invalid ids or repositroy not found</td>
+<td style="text-align:center"></td>
+<td><a href="#add-command-rel-for-repository-command-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#add-command-rel-for-repository-command-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to add relationship</td>
+<td style="text-align:center"></td>
+<td><a href="#add-command-rel-for-repository-command-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-1">Responses</h4>
+<h5 id="span-idadd-command-rel-for-repository-command-200span-200---successfully-added-relationship"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200 - successfully added relationship</h5>
+<p>Status: OK</p>
+<h6 id="span-idadd-command-rel-for-repository-command-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h5 id="span-idadd-command-rel-for-repository-command-400span-400---invalid-ids-or-repositroy-not-found"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - invalid ids or repositroy not found</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-idadd-command-rel-for-repository-command-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idadd-command-rel-for-repository-command-500span-500---failed-to-add-relationship"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to add relationship</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idadd-command-rel-for-repository-command-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idcreate-api-keyspan-creates-an-api-key-pair-for-a-given-user-createapikey"><!-- raw HTML omitted --><!-- raw HTML omitted --> Creates an api key pair for a given user. (<em>createApiKey</em>)</h3>
+<pre><code>POST /rest/api/1/user/apikey/generate/{name}
+</code></pre><h4 id="produces-1">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="parameters-2">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><code>path</code></td>
+<td>string</td>
+<td><code>string</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>the name of the key</td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-2">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#create-api-key-200">200</a></td>
+<td>OK</td>
+<td>the generated api key pair</td>
+<td style="text-align:center"></td>
+<td><a href="#create-api-key-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#create-api-key-400">400</a></td>
+<td>Bad Request</td>
+<td>failed to generate unique key or value</td>
+<td style="text-align:center"></td>
+<td><a href="#create-api-key-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#create-api-key-500">500</a></td>
+<td>Internal Server Error</td>
+<td>when failed to get user context</td>
+<td style="text-align:center"></td>
+<td><a href="#create-api-key-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-2">Responses</h4>
+<h5 id="span-idcreate-api-key-200span-200---the-generated-api-key-pair"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200 - the generated api key pair</h5>
+<p>Status: OK</p>
+<h6 id="span-idcreate-api-key-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p><a href="#api-key">APIKey</a></p>
+<h5 id="span-idcreate-api-key-400span-400---failed-to-generate-unique-key-or-value"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - failed to generate unique key or value</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-idcreate-api-key-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idcreate-api-key-500span-500---when-failed-to-get-user-context"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - when failed to get user context</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idcreate-api-key-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idcreate-repositoryspan-create-repository-createrepository"><!-- raw HTML omitted --><!-- raw HTML omitted --> create repository (<em>createRepository</em>)</h3>
+<pre><code>POST /rest/api/1/repository
+</code></pre><p>Creates a new repository</p>
+<h4 id="consumes-1">Consumes</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="produces-2">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="parameters-3">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>repository</td>
+<td><code>body</code></td>
+<td><a href="#repository">Repository</a></td>
+<td><code>models.Repository</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-3">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#create-repository-200">200</a></td>
+<td>OK</td>
+<td>the created repository</td>
+<td style="text-align:center"></td>
+<td><a href="#create-repository-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#create-repository-400">400</a></td>
+<td>Bad Request</td>
+<td>failed to generate unique key or value</td>
+<td style="text-align:center"></td>
+<td><a href="#create-repository-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#create-repository-500">500</a></td>
+<td>Internal Server Error</td>
+<td>when failed to get user context</td>
+<td style="text-align:center"></td>
+<td><a href="#create-repository-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-3">Responses</h4>
+<h5 id="span-idcreate-repository-200span-200---the-created-repository"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200 - the created repository</h5>
+<p>Status: OK</p>
+<h6 id="span-idcreate-repository-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p><a href="#repository">Repository</a></p>
+<h5 id="span-idcreate-repository-400span-400---failed-to-generate-unique-key-or-value"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - failed to generate unique key or value</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-idcreate-repository-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idcreate-repository-500span-500---when-failed-to-get-user-context"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - when failed to get user context</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idcreate-repository-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idcreate-secretspan-create-a-new-secure-secret-createsecret"><!-- raw HTML omitted --><!-- raw HTML omitted --> Create a new secure secret. (<em>createSecret</em>)</h3>
+<pre><code>POST /rest/api/1/vault/secret
+</code></pre><h4 id="consumes-2">Consumes</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="parameters-4">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>secret</td>
+<td><code>body</code></td>
+<td><a href="#vault-setting">VaultSetting</a></td>
+<td><code>models.VaultSetting</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-4">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#create-secret-200">200</a></td>
+<td>OK</td>
+<td>OK setting successfully create</td>
+<td style="text-align:center"></td>
+<td><a href="#create-secret-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#create-secret-400">400</a></td>
+<td>Bad Request</td>
+<td>invalid json payload</td>
+<td style="text-align:center"></td>
+<td><a href="#create-secret-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#create-secret-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to create secret</td>
+<td style="text-align:center"></td>
+<td><a href="#create-secret-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-4">Responses</h4>
+<h5 id="span-idcreate-secret-200span-200---ok-setting-successfully-create"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200 - OK setting successfully create</h5>
+<p>Status: OK</p>
+<h6 id="span-idcreate-secret-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h5 id="span-idcreate-secret-400span-400---invalid-json-payload"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - invalid json payload</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-idcreate-secret-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idcreate-secret-500span-500---failed-to-create-secret"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to create secret</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idcreate-secret-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idcreate-userspan-create-user-createuser"><!-- raw HTML omitted --><!-- raw HTML omitted --> create user (<em>createUser</em>)</h3>
+<pre><code>POST /rest/api/1/user
+</code></pre><p>Creates a new user</p>
+<h4 id="consumes-3">Consumes</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="produces-3">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="parameters-5">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user</td>
+<td><code>body</code></td>
+<td><a href="#user">User</a></td>
+<td><code>models.User</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-5">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#create-user-200">200</a></td>
+<td>OK</td>
+<td>the created user</td>
+<td style="text-align:center"></td>
+<td><a href="#create-user-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#create-user-400">400</a></td>
+<td>Bad Request</td>
+<td>invalid json payload</td>
+<td style="text-align:center"></td>
+<td><a href="#create-user-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#create-user-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to create user or generating a new api key</td>
+<td style="text-align:center"></td>
+<td><a href="#create-user-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-5">Responses</h4>
+<h5 id="span-idcreate-user-200span-200---the-created-user"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200 - the created user</h5>
+<p>Status: OK</p>
+<h6 id="span-idcreate-user-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p><a href="#user">User</a></p>
+<h5 id="span-idcreate-user-400span-400---invalid-json-payload"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - invalid json payload</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-idcreate-user-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idcreate-user-500span-500---failed-to-create-user-or-generating-a-new-api-key"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to create user or generating a new api key</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idcreate-user-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idcreate-vcs-tokenspan-create-a-new-token-for-a-platform-like-github-gitlab-gitea-createvcstoken"><!-- raw HTML omitted --><!-- raw HTML omitted --> Create a new token for a platform like Github, Gitlab, Gitea&hellip; (<em>createVcsToken</em>)</h3>
+<pre><code>POST /rest/api/1/vcs-token
+</code></pre><h4 id="consumes-4">Consumes</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="parameters-6">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>secret</td>
+<td><code>body</code></td>
+<td><a href="#v-c-s-token">VCSToken</a></td>
+<td><code>models.VCSToken</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-6">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#create-vcs-token-200">200</a></td>
+<td>OK</td>
+<td>OK setting successfully create</td>
+<td style="text-align:center"></td>
+<td><a href="#create-vcs-token-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#create-vcs-token-400">400</a></td>
+<td>Bad Request</td>
+<td>invalid json payload</td>
+<td style="text-align:center"></td>
+<td><a href="#create-vcs-token-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#create-vcs-token-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to create secret</td>
+<td style="text-align:center"></td>
+<td><a href="#create-vcs-token-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-6">Responses</h4>
+<h5 id="span-idcreate-vcs-token-200span-200---ok-setting-successfully-create"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200 - OK setting successfully create</h5>
+<p>Status: OK</p>
+<h6 id="span-idcreate-vcs-token-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h5 id="span-idcreate-vcs-token-400span-400---invalid-json-payload"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - invalid json payload</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-idcreate-vcs-token-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idcreate-vcs-token-500span-500---failed-to-create-secret"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to create secret</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idcreate-vcs-token-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-iddelete-api-keyspan-deletes-a-set-of-api-keys-for-a-given-user-with-a-given-id-deleteapikey"><!-- raw HTML omitted --><!-- raw HTML omitted --> Deletes a set of api keys for a given user with a given id. (<em>deleteApiKey</em>)</h3>
+<pre><code>DELETE /rest/api/1/user/apikey/delete/{keyid}
+</code></pre><h4 id="parameters-7">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keyid</td>
+<td><code>path</code></td>
+<td>int (formatted integer)</td>
+<td><code>int64</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>The ID of the key to delete</td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-7">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#delete-api-key-200">200</a></td>
+<td>OK</td>
+<td>OK in case the deletion was successful</td>
+<td style="text-align:center"></td>
+<td><a href="#delete-api-key-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#delete-api-key-400">400</a></td>
+<td>Bad Request</td>
+<td>in case of missing user context or invalid ID</td>
+<td style="text-align:center"></td>
+<td><a href="#delete-api-key-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#delete-api-key-500">500</a></td>
+<td>Internal Server Error</td>
+<td>when the deletion operation failed</td>
+<td style="text-align:center"></td>
+<td><a href="#delete-api-key-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-7">Responses</h4>
+<h5 id="span-iddelete-api-key-200span-200---ok-in-case-the-deletion-was-successful"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200 - OK in case the deletion was successful</h5>
+<p>Status: OK</p>
+<h6 id="span-iddelete-api-key-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h5 id="span-iddelete-api-key-400span-400---in-case-of-missing-user-context-or-invalid-id"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - in case of missing user context or invalid ID</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-iddelete-api-key-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-iddelete-api-key-500span-500---when-the-deletion-operation-failed"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - when the deletion operation failed</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-iddelete-api-key-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-iddelete-commandspan-deletes-given-command-deletecommand"><!-- raw HTML omitted --><!-- raw HTML omitted --> Deletes given command. (<em>deleteCommand</em>)</h3>
+<pre><code>DELETE /rest/api/1/command/{id}
+</code></pre><h4 id="parameters-8">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td><code>path</code></td>
+<td>int (formatted integer)</td>
+<td><code>int64</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>The ID of the command to delete</td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-8">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#delete-command-200">200</a></td>
+<td>OK</td>
+<td>OK in case the deletion was successful</td>
+<td style="text-align:center"></td>
+<td><a href="#delete-command-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#delete-command-400">400</a></td>
+<td>Bad Request</td>
+<td>in case of missing user context or invalid ID</td>
+<td style="text-align:center"></td>
+<td><a href="#delete-command-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#delete-command-500">500</a></td>
+<td>Internal Server Error</td>
+<td>when the deletion operation failed</td>
+<td style="text-align:center"></td>
+<td><a href="#delete-command-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-8">Responses</h4>
+<h5 id="span-iddelete-command-200span-200---ok-in-case-the-deletion-was-successful"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200 - OK in case the deletion was successful</h5>
+<p>Status: OK</p>
+<h6 id="span-iddelete-command-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h5 id="span-iddelete-command-400span-400---in-case-of-missing-user-context-or-invalid-id"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - in case of missing user context or invalid ID</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-iddelete-command-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-iddelete-command-500span-500---when-the-deletion-operation-failed"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - when the deletion operation failed</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-iddelete-command-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-iddelete-command-settingspan-deletes-a-given-command-setting-deletecommandsetting"><!-- raw HTML omitted --><!-- raw HTML omitted --> Deletes a given command setting. (<em>deleteCommandSetting</em>)</h3>
+<pre><code>DELETE /rest/api/1/command/settings/{id}
+</code></pre><h4 id="parameters-9">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td><code>path</code></td>
+<td>int (formatted integer)</td>
+<td><code>int64</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>The ID of the command setting to delete</td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-9">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#delete-command-setting-200">200</a></td>
+<td>OK</td>
+<td>OK in case the deletion was successful</td>
+<td style="text-align:center"></td>
+<td><a href="#delete-command-setting-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#delete-command-setting-400">400</a></td>
+<td>Bad Request</td>
+<td>invalid id</td>
+<td style="text-align:center"></td>
+<td><a href="#delete-command-setting-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#delete-command-setting-404">404</a></td>
+<td>Not Found</td>
+<td>command setting not found</td>
+<td style="text-align:center"></td>
+<td><a href="#delete-command-setting-404-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#delete-command-setting-500">500</a></td>
+<td>Internal Server Error</td>
+<td>when the deletion operation failed</td>
+<td style="text-align:center"></td>
+<td><a href="#delete-command-setting-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-9">Responses</h4>
+<h5 id="span-iddelete-command-setting-200span-200---ok-in-case-the-deletion-was-successful"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200 - OK in case the deletion was successful</h5>
+<p>Status: OK</p>
+<h6 id="span-iddelete-command-setting-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h5 id="span-iddelete-command-setting-400span-400---invalid-id"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - invalid id</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-iddelete-command-setting-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-iddelete-command-setting-404span-404---command-setting-not-found"><!-- raw HTML omitted --><!-- raw HTML omitted --> 404 - command setting not found</h5>
+<p>Status: Not Found</p>
+<h6 id="span-iddelete-command-setting-404-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-iddelete-command-setting-500span-500---when-the-deletion-operation-failed"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - when the deletion operation failed</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-iddelete-command-setting-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-iddelete-repositoryspan-deletes-the-given-repository-deleterepository"><!-- raw HTML omitted --><!-- raw HTML omitted --> Deletes the given repository. (<em>deleteRepository</em>)</h3>
+<pre><code>DELETE /rest/api/1/repository/{id}
+</code></pre><h4 id="parameters-10">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td><code>path</code></td>
+<td>int (formatted integer)</td>
+<td><code>int64</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>The ID of the repository to delete</td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-10">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#delete-repository-200">200</a></td>
+<td>OK</td>
+<td>OK in case the deletion was successful</td>
+<td style="text-align:center"></td>
+<td><a href="#delete-repository-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#delete-repository-400">400</a></td>
+<td>Bad Request</td>
+<td>in case of missing user context or invalid ID</td>
+<td style="text-align:center"></td>
+<td><a href="#delete-repository-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#delete-repository-404">404</a></td>
+<td>Not Found</td>
+<td>in case of repository not found</td>
+<td style="text-align:center"></td>
+<td><a href="#delete-repository-404-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#delete-repository-500">500</a></td>
+<td>Internal Server Error</td>
+<td>when the deletion operation failed</td>
+<td style="text-align:center"></td>
+<td><a href="#delete-repository-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-10">Responses</h4>
+<h5 id="span-iddelete-repository-200span-200---ok-in-case-the-deletion-was-successful"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200 - OK in case the deletion was successful</h5>
+<p>Status: OK</p>
+<h6 id="span-iddelete-repository-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h5 id="span-iddelete-repository-400span-400---in-case-of-missing-user-context-or-invalid-id"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - in case of missing user context or invalid ID</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-iddelete-repository-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-iddelete-repository-404span-404---in-case-of-repository-not-found"><!-- raw HTML omitted --><!-- raw HTML omitted --> 404 - in case of repository not found</h5>
+<p>Status: Not Found</p>
+<h6 id="span-iddelete-repository-404-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-iddelete-repository-500span-500---when-the-deletion-operation-failed"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - when the deletion operation failed</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-iddelete-repository-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-iddelete-secretspan-deletes-the-given-secret-deletesecret"><!-- raw HTML omitted --><!-- raw HTML omitted --> Deletes the given secret. (<em>deleteSecret</em>)</h3>
+<pre><code>DELETE /rest/api/1/vault/secret/{name}
+</code></pre><h4 id="parameters-11">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><code>path</code></td>
+<td>string</td>
+<td><code>string</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>The key of the secret</td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-11">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#delete-secret-200">200</a></td>
+<td>OK</td>
+<td>OK in case the deletion was successful</td>
+<td style="text-align:center"></td>
+<td><a href="#delete-secret-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#delete-secret-400">400</a></td>
+<td>Bad Request</td>
+<td>in case of missing name</td>
+<td style="text-align:center"></td>
+<td><a href="#delete-secret-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#delete-secret-404">404</a></td>
+<td>Not Found</td>
+<td>in case the secret was not found</td>
+<td style="text-align:center"></td>
+<td><a href="#delete-secret-404-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#delete-secret-500">500</a></td>
+<td>Internal Server Error</td>
+<td>when the deletion operation failed</td>
+<td style="text-align:center"></td>
+<td><a href="#delete-secret-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-11">Responses</h4>
+<h5 id="span-iddelete-secret-200span-200---ok-in-case-the-deletion-was-successful"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200 - OK in case the deletion was successful</h5>
+<p>Status: OK</p>
+<h6 id="span-iddelete-secret-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h5 id="span-iddelete-secret-400span-400---in-case-of-missing-name"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - in case of missing name</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-iddelete-secret-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-iddelete-secret-404span-404---in-case-the-secret-was-not-found"><!-- raw HTML omitted --><!-- raw HTML omitted --> 404 - in case the secret was not found</h5>
+<p>Status: Not Found</p>
+<h6 id="span-iddelete-secret-404-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-iddelete-secret-500span-500---when-the-deletion-operation-failed"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - when the deletion operation failed</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-iddelete-secret-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-iddelete-userspan-deletes-the-given-user-deleteuser"><!-- raw HTML omitted --><!-- raw HTML omitted --> Deletes the given user. (<em>deleteUser</em>)</h3>
+<pre><code>DELETE /rest/api/1/user/{id}
+</code></pre><h4 id="parameters-12">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td><code>path</code></td>
+<td>int (formatted integer)</td>
+<td><code>int64</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>The ID of the user to delete</td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-12">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#delete-user-200">200</a></td>
+<td>OK</td>
+<td>OK in case the deletion was successful</td>
+<td style="text-align:center"></td>
+<td><a href="#delete-user-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#delete-user-400">400</a></td>
+<td>Bad Request</td>
+<td>in case of missing user context or invalid ID</td>
+<td style="text-align:center"></td>
+<td><a href="#delete-user-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#delete-user-404">404</a></td>
+<td>Not Found</td>
+<td>in case of user not found</td>
+<td style="text-align:center"></td>
+<td><a href="#delete-user-404-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#delete-user-500">500</a></td>
+<td>Internal Server Error</td>
+<td>when the deletion operation failed</td>
+<td style="text-align:center"></td>
+<td><a href="#delete-user-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-12">Responses</h4>
+<h5 id="span-iddelete-user-200span-200---ok-in-case-the-deletion-was-successful"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200 - OK in case the deletion was successful</h5>
+<p>Status: OK</p>
+<h6 id="span-iddelete-user-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h5 id="span-iddelete-user-400span-400---in-case-of-missing-user-context-or-invalid-id"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - in case of missing user context or invalid ID</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-iddelete-user-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-iddelete-user-404span-404---in-case-of-user-not-found"><!-- raw HTML omitted --><!-- raw HTML omitted --> 404 - in case of user not found</h5>
+<p>Status: Not Found</p>
+<h6 id="span-iddelete-user-404-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-iddelete-user-500span-500---when-the-deletion-operation-failed"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - when the deletion operation failed</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-iddelete-user-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idget-api-keysspan-returns-a-given-api-key-getapikeys"><!-- raw HTML omitted --><!-- raw HTML omitted --> Returns a given api key. (<em>getApiKeys</em>)</h3>
+<pre><code>GET /rest/api/1/user/apikey/{keyid}
+</code></pre><h4 id="produces-4">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="parameters-13">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keyid</td>
+<td><code>path</code></td>
+<td>int (formatted integer)</td>
+<td><code>int64</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>The ID of the key to return</td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-13">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#get-api-keys-200">200</a></td>
+<td>OK</td>
+<td></td>
+<td style="text-align:center"></td>
+<td><a href="#get-api-keys-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#get-api-keys-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to get user context</td>
+<td style="text-align:center"></td>
+<td><a href="#get-api-keys-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-13">Responses</h4>
+<h5 id="span-idget-api-keys-200span-200"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200</h5>
+<p>Status: OK</p>
+<h6 id="span-idget-api-keys-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p><a href="#api-key">APIKey</a></p>
+<h5 id="span-idget-api-keys-500span-500---failed-to-get-user-context"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to get user context</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idget-api-keys-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idget-commandspan-returns-a-specific-command-getcommand"><!-- raw HTML omitted --><!-- raw HTML omitted --> Returns a specific command. (<em>getCommand</em>)</h3>
+<pre><code>GET /rest/api/1/command/{id}
+</code></pre><h4 id="produces-5">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="parameters-14">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td><code>path</code></td>
+<td>int (formatted integer)</td>
+<td><code>int64</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-14">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#get-command-200">200</a></td>
+<td>OK</td>
+<td></td>
+<td style="text-align:center"></td>
+<td><a href="#get-command-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#get-command-400">400</a></td>
+<td>Bad Request</td>
+<td>invalid command id</td>
+<td style="text-align:center"></td>
+<td><a href="#get-command-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#get-command-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to get user context</td>
+<td style="text-align:center"></td>
+<td><a href="#get-command-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-14">Responses</h4>
+<h5 id="span-idget-command-200span-200"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200</h5>
+<p>Status: OK</p>
+<h6 id="span-idget-command-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p><a href="#command">Command</a></p>
+<h5 id="span-idget-command-400span-400---invalid-command-id"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - invalid command id</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-idget-command-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idget-command-500span-500---failed-to-get-user-context"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to get user context</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idget-command-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idget-command-runspan-returns-details-about-a-command-run-getcommandrun"><!-- raw HTML omitted --><!-- raw HTML omitted --> Returns details about a command run. (<em>getCommandRun</em>)</h3>
+<pre><code>GET /rest/api/1/command/run/{id}
+</code></pre><h4 id="produces-6">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="parameters-15">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td><code>path</code></td>
+<td>int (formatted integer)</td>
+<td><code>int64</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-15">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#get-command-run-200">200</a></td>
+<td>OK</td>
+<td></td>
+<td style="text-align:center"></td>
+<td><a href="#get-command-run-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#get-command-run-400">400</a></td>
+<td>Bad Request</td>
+<td>invalid command id</td>
+<td style="text-align:center"></td>
+<td><a href="#get-command-run-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#get-command-run-404">404</a></td>
+<td>Not Found</td>
+<td>command run not found</td>
+<td style="text-align:center"></td>
+<td><a href="#get-command-run-404-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#get-command-run-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to get command run</td>
+<td style="text-align:center"></td>
+<td><a href="#get-command-run-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-15">Responses</h4>
+<h5 id="span-idget-command-run-200span-200"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200</h5>
+<p>Status: OK</p>
+<h6 id="span-idget-command-run-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p><a href="#command-run">CommandRun</a></p>
+<h5 id="span-idget-command-run-400span-400---invalid-command-id"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - invalid command id</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-idget-command-run-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idget-command-run-404span-404---command-run-not-found"><!-- raw HTML omitted --><!-- raw HTML omitted --> 404 - command run not found</h5>
+<p>Status: Not Found</p>
+<h6 id="span-idget-command-run-404-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h5 id="span-idget-command-run-500span-500---failed-to-get-command-run"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to get command run</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idget-command-run-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idget-command-settingspan-get-a-specific-setting-getcommandsetting"><!-- raw HTML omitted --><!-- raw HTML omitted --> Get a specific setting. (<em>getCommandSetting</em>)</h3>
+<pre><code>GET /rest/api/1/command/settings/{id}
+</code></pre><h4 id="produces-7">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="parameters-16">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td><code>path</code></td>
+<td>int (formatted integer)</td>
+<td><code>int64</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>The ID of the command setting to retrieve</td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-16">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#get-command-setting-200">200</a></td>
+<td>OK</td>
+<td></td>
+<td style="text-align:center"></td>
+<td><a href="#get-command-setting-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#get-command-setting-400">400</a></td>
+<td>Bad Request</td>
+<td>invalid command id</td>
+<td style="text-align:center"></td>
+<td><a href="#get-command-setting-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#get-command-setting-404">404</a></td>
+<td>Not Found</td>
+<td>command setting not found</td>
+<td style="text-align:center"></td>
+<td><a href="#get-command-setting-404-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#get-command-setting-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to get command setting</td>
+<td style="text-align:center"></td>
+<td><a href="#get-command-setting-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-16">Responses</h4>
+<h5 id="span-idget-command-setting-200span-200"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200</h5>
+<p>Status: OK</p>
+<h6 id="span-idget-command-setting-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p><a href="#command-setting">CommandSetting</a></p>
+<h5 id="span-idget-command-setting-400span-400---invalid-command-id"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - invalid command id</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-idget-command-setting-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idget-command-setting-404span-404---command-setting-not-found"><!-- raw HTML omitted --><!-- raw HTML omitted --> 404 - command setting not found</h5>
+<p>Status: Not Found</p>
+<h6 id="span-idget-command-setting-404-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idget-command-setting-500span-500---failed-to-get-command-setting"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to get command setting</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idget-command-setting-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idget-eventspan-get-a-specific-event-getevent"><!-- raw HTML omitted --><!-- raw HTML omitted --> Get a specific event. (<em>getEvent</em>)</h3>
+<pre><code>GET /rest/api/1/event/{id}
+</code></pre><h4 id="produces-8">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="parameters-17">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td><code>path</code></td>
+<td>int (formatted integer)</td>
+<td><code>int64</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>The ID of the event to retrieve</td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-17">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#get-event-200">200</a></td>
+<td>OK</td>
+<td></td>
+<td style="text-align:center"></td>
+<td><a href="#get-event-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#get-event-400">400</a></td>
+<td>Bad Request</td>
+<td>invalid event id</td>
+<td style="text-align:center"></td>
+<td><a href="#get-event-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#get-event-404">404</a></td>
+<td>Not Found</td>
+<td>event not found</td>
+<td style="text-align:center"></td>
+<td><a href="#get-event-404-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#get-event-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to get event</td>
+<td style="text-align:center"></td>
+<td><a href="#get-event-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-17">Responses</h4>
+<h5 id="span-idget-event-200span-200"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200</h5>
+<p>Status: OK</p>
+<h6 id="span-idget-event-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p><a href="#event">Event</a></p>
+<h5 id="span-idget-event-400span-400---invalid-event-id"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - invalid event id</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-idget-event-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idget-event-404span-404---event-not-found"><!-- raw HTML omitted --><!-- raw HTML omitted --> 404 - event not found</h5>
+<p>Status: Not Found</p>
+<h6 id="span-idget-event-404-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idget-event-500span-500---failed-to-get-event"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to get event</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idget-event-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idget-repositoryspan-gets-the-repository-with-the-corresponding-id-getrepository"><!-- raw HTML omitted --><!-- raw HTML omitted --> Gets the repository with the corresponding ID. (<em>getRepository</em>)</h3>
+<pre><code>GET /rest/api/1/repository/{id}
+</code></pre><h4 id="produces-9">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="parameters-18">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td><code>path</code></td>
+<td>int (formatted integer)</td>
+<td><code>int64</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-18">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#get-repository-200">200</a></td>
+<td>OK</td>
+<td></td>
+<td style="text-align:center"></td>
+<td><a href="#get-repository-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#get-repository-400">400</a></td>
+<td>Bad Request</td>
+<td>invalid repository id</td>
+<td style="text-align:center"></td>
+<td><a href="#get-repository-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#get-repository-404">404</a></td>
+<td>Not Found</td>
+<td>repository not found</td>
+<td style="text-align:center"></td>
+<td><a href="#get-repository-404-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#get-repository-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to get repository</td>
+<td style="text-align:center"></td>
+<td><a href="#get-repository-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-18">Responses</h4>
+<h5 id="span-idget-repository-200span-200"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200</h5>
+<p>Status: OK</p>
+<h6 id="span-idget-repository-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p><a href="#repository">Repository</a></p>
+<h5 id="span-idget-repository-400span-400---invalid-repository-id"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - invalid repository id</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-idget-repository-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idget-repository-404span-404---repository-not-found"><!-- raw HTML omitted --><!-- raw HTML omitted --> 404 - repository not found</h5>
+<p>Status: Not Found</p>
+<h6 id="span-idget-repository-404-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idget-repository-500span-500---failed-to-get-repository"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to get repository</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idget-repository-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idget-secretspan-get-a-specific-secret-getsecret"><!-- raw HTML omitted --><!-- raw HTML omitted --> Get a specific secret. (<em>getSecret</em>)</h3>
+<pre><code>GET /rest/api/1/vault/secret/{name}
+</code></pre><h4 id="produces-10">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="parameters-19">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><code>path</code></td>
+<td>string</td>
+<td><code>string</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-19">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#get-secret-200">200</a></td>
+<td>OK</td>
+<td></td>
+<td style="text-align:center"></td>
+<td><a href="#get-secret-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#get-secret-400">400</a></td>
+<td>Bad Request</td>
+<td>invalid name</td>
+<td style="text-align:center"></td>
+<td><a href="#get-secret-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#get-secret-404">404</a></td>
+<td>Not Found</td>
+<td>secret not found</td>
+<td style="text-align:center"></td>
+<td><a href="#get-secret-404-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#get-secret-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to load secrets</td>
+<td style="text-align:center"></td>
+<td><a href="#get-secret-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-19">Responses</h4>
+<h5 id="span-idget-secret-200span-200"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200</h5>
+<p>Status: OK</p>
+<h6 id="span-idget-secret-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p><a href="#vault-setting">VaultSetting</a></p>
+<h5 id="span-idget-secret-400span-400---invalid-name"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - invalid name</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-idget-secret-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idget-secret-404span-404---secret-not-found"><!-- raw HTML omitted --><!-- raw HTML omitted --> 404 - secret not found</h5>
+<p>Status: Not Found</p>
+<h6 id="span-idget-secret-404-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idget-secret-500span-500---failed-to-load-secrets"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to load secrets</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idget-secret-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idget-tokenspan-creates-a-jwt-token-for-a-given-api-key-pair-gettoken"><!-- raw HTML omitted --><!-- raw HTML omitted --> Creates a JWT token for a given api key pair. (<em>getToken</em>)</h3>
+<pre><code>POST /rest/api/1/get-token
+</code></pre><h4 id="produces-11">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="all-responses-20">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#get-token-200">200</a></td>
+<td>OK</td>
+<td>the generated JWT token</td>
+<td style="text-align:center"></td>
+<td><a href="#get-token-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#get-token-500">500</a></td>
+<td>Internal Server Error</td>
+<td>when there was a problem with matching the email, or the api key or generating the token</td>
+<td style="text-align:center"></td>
+<td><a href="#get-token-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-20">Responses</h4>
+<h5 id="span-idget-token-200span-200---the-generated-jwt-token"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200 - the generated JWT token</h5>
+<p>Status: OK</p>
+<h6 id="span-idget-token-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idget-token-500span-500---when-there-was-a-problem-with-matching-the-email-or-the-api-key-or-generating-the-token"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - when there was a problem with matching the email, or the api key or generating the token</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idget-token-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h3 id="span-idget-userspan-gets-the-user-with-the-corresponding-id-getuser"><!-- raw HTML omitted --><!-- raw HTML omitted --> Gets the user with the corresponding ID. (<em>getUser</em>)</h3>
+<pre><code>GET /rest/api/1/user/{id}
+</code></pre><h4 id="produces-12">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="parameters-20">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td><code>path</code></td>
+<td>int (formatted integer)</td>
+<td><code>int64</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-21">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#get-user-200">200</a></td>
+<td>OK</td>
+<td></td>
+<td style="text-align:center"></td>
+<td><a href="#get-user-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#get-user-400">400</a></td>
+<td>Bad Request</td>
+<td>invalid user id</td>
+<td style="text-align:center"></td>
+<td><a href="#get-user-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#get-user-404">404</a></td>
+<td>Not Found</td>
+<td>user not found</td>
+<td style="text-align:center"></td>
+<td><a href="#get-user-404-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#get-user-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to get user</td>
+<td style="text-align:center"></td>
+<td><a href="#get-user-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-21">Responses</h4>
+<h5 id="span-idget-user-200span-200"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200</h5>
+<p>Status: OK</p>
+<h6 id="span-idget-user-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p><a href="#user">User</a></p>
+<h5 id="span-idget-user-400span-400---invalid-user-id"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - invalid user id</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-idget-user-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idget-user-404span-404---user-not-found"><!-- raw HTML omitted --><!-- raw HTML omitted --> 404 - user not found</h5>
+<p>Status: Not Found</p>
+<h6 id="span-idget-user-404-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idget-user-500span-500---failed-to-get-user"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to get user</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idget-user-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idhook-handlerspan-handle-the-hooks-created-by-the-platform-hookhandler"><!-- raw HTML omitted --><!-- raw HTML omitted --> Handle the hooks created by the platform. (<em>hookHandler</em>)</h3>
+<pre><code>POST /rest/api/1/hooks/{rid}/{vid}/callback
+</code></pre><h4 id="produces-13">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="parameters-21">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rid</td>
+<td><code>path</code></td>
+<td>int (formatted integer)</td>
+<td><code>int64</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>The ID of the repository.</td>
+</tr>
+<tr>
+<td>vid</td>
+<td><code>path</code></td>
+<td>int (formatted integer)</td>
+<td><code>int64</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>The ID of the provider.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-22">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#hook-handler-200">200</a></td>
+<td>OK</td>
+<td>success in case the hook event was processed without problems</td>
+<td style="text-align:center"></td>
+<td><a href="#hook-handler-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#hook-handler-400">400</a></td>
+<td>Bad Request</td>
+<td>for invalid parameters</td>
+<td style="text-align:center"></td>
+<td><a href="#hook-handler-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#hook-handler-404">404</a></td>
+<td>Not Found</td>
+<td>if the repository or the provider does not exist</td>
+<td style="text-align:center"></td>
+<td><a href="#hook-handler-404-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-22">Responses</h4>
+<h5 id="span-idhook-handler-200span-200---success-in-case-the-hook-event-was-processed-without-problems"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200 - success in case the hook event was processed without problems</h5>
+<p>Status: OK</p>
+<h6 id="span-idhook-handler-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h5 id="span-idhook-handler-400span-400---for-invalid-parameters"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - for invalid parameters</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-idhook-handler-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h5 id="span-idhook-handler-404span-404---if-the-repository-or-the-provider-does-not-exist"><!-- raw HTML omitted --><!-- raw HTML omitted --> 404 - if the repository or the provider does not exist</h5>
+<p>Status: Not Found</p>
+<h6 id="span-idhook-handler-404-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h3 id="span-idlist-api-keysspan-lists-all-api-keys-for-a-given-user-listapikeys"><!-- raw HTML omitted --><!-- raw HTML omitted --> Lists all api keys for a given user. (<em>listApiKeys</em>)</h3>
+<pre><code>POST /rest/api/1/user/apikey
+</code></pre><h4 id="produces-14">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="all-responses-23">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#list-api-keys-200">200</a></td>
+<td>OK</td>
+<td></td>
+<td style="text-align:center"></td>
+<td><a href="#list-api-keys-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#list-api-keys-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to get user context</td>
+<td style="text-align:center"></td>
+<td><a href="#list-api-keys-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-23">Responses</h4>
+<h5 id="span-idlist-api-keys-200span-200"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200</h5>
+<p>Status: OK</p>
+<h6 id="span-idlist-api-keys-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>[]<a href="#api-key">APIKey</a></p>
+<h5 id="span-idlist-api-keys-500span-500---failed-to-get-user-context"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to get user context</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idlist-api-keys-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idlist-command-settingsspan-list-settings-for-a-command-listcommandsettings"><!-- raw HTML omitted --><!-- raw HTML omitted --> List settings for a command. (<em>listCommandSettings</em>)</h3>
+<pre><code>POST /rest/api/1/command/{id}/settings
+</code></pre><h4 id="produces-15">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="parameters-22">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td><code>path</code></td>
+<td>int (formatted integer)</td>
+<td><code>int64</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>The ID of the command to list settings for</td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-24">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#list-command-settings-200">200</a></td>
+<td>OK</td>
+<td></td>
+<td style="text-align:center"></td>
+<td><a href="#list-command-settings-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#list-command-settings-400">400</a></td>
+<td>Bad Request</td>
+<td>invalid id</td>
+<td style="text-align:center"></td>
+<td><a href="#list-command-settings-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#list-command-settings-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to list settings</td>
+<td style="text-align:center"></td>
+<td><a href="#list-command-settings-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-24">Responses</h4>
+<h5 id="span-idlist-command-settings-200span-200"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200</h5>
+<p>Status: OK</p>
+<h6 id="span-idlist-command-settings-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>[]<a href="#command-setting">CommandSetting</a></p>
+<h5 id="span-idlist-command-settings-400span-400---invalid-id"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - invalid id</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-idlist-command-settings-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idlist-command-settings-500span-500---failed-to-list-settings"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to list settings</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idlist-command-settings-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idlist-commandsspan-list-commands-listcommands"><!-- raw HTML omitted --><!-- raw HTML omitted --> list commands (<em>listCommands</em>)</h3>
+<pre><code>POST /rest/api/1/commands
+</code></pre><p>List commands</p>
+<h4 id="produces-16">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="parameters-23">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>listOptions</td>
+<td><code>body</code></td>
+<td><a href="#list-options">ListOptions</a></td>
+<td><code>models.ListOptions</code></td>
+<td></td>
+<td style="text-align:center"></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-25">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#list-commands-200">200</a></td>
+<td>OK</td>
+<td></td>
+<td style="text-align:center"></td>
+<td><a href="#list-commands-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#list-commands-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to get user context</td>
+<td style="text-align:center"></td>
+<td><a href="#list-commands-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-25">Responses</h4>
+<h5 id="span-idlist-commands-200span-200"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200</h5>
+<p>Status: OK</p>
+<h6 id="span-idlist-commands-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>[]<a href="#command">Command</a></p>
+<h5 id="span-idlist-commands-500span-500---failed-to-get-user-context"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to get user context</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idlist-commands-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idlist-eventsspan-list-events-for-a-repository-listevents"><!-- raw HTML omitted --><!-- raw HTML omitted --> List events for a repository. (<em>listEvents</em>)</h3>
+<pre><code>POST /rest/api/1/events/{repoid}
+</code></pre><h4 id="produces-17">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="parameters-24">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>repoid</td>
+<td><code>path</code></td>
+<td>int (formatted integer)</td>
+<td><code>int64</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>The ID of the repository to list events for.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-26">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#list-events-200">200</a></td>
+<td>OK</td>
+<td></td>
+<td style="text-align:center"></td>
+<td><a href="#list-events-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#list-events-400">400</a></td>
+<td>Bad Request</td>
+<td>invalid repository id</td>
+<td style="text-align:center"></td>
+<td><a href="#list-events-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#list-events-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to list events</td>
+<td style="text-align:center"></td>
+<td><a href="#list-events-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-26">Responses</h4>
+<h5 id="span-idlist-events-200span-200"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200</h5>
+<p>Status: OK</p>
+<h6 id="span-idlist-events-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>[]<a href="#event">Event</a></p>
+<h5 id="span-idlist-events-400span-400---invalid-repository-id"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - invalid repository id</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-idlist-events-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idlist-events-500span-500---failed-to-list-events"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to list events</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idlist-events-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idlist-repositoriesspan-list-repositories-listrepositories"><!-- raw HTML omitted --><!-- raw HTML omitted --> list repositories (<em>listRepositories</em>)</h3>
+<pre><code>POST /rest/api/1/repositories
+</code></pre><p>List repositories</p>
+<h4 id="consumes-5">Consumes</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="produces-18">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="parameters-25">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>listOptions</td>
+<td><code>body</code></td>
+<td><a href="#list-options">ListOptions</a></td>
+<td><code>models.ListOptions</code></td>
+<td></td>
+<td style="text-align:center"></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-27">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#list-repositories-200">200</a></td>
+<td>OK</td>
+<td></td>
+<td style="text-align:center"></td>
+<td><a href="#list-repositories-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#list-repositories-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to list repositories</td>
+<td style="text-align:center"></td>
+<td><a href="#list-repositories-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-27">Responses</h4>
+<h5 id="span-idlist-repositories-200span-200"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200</h5>
+<p>Status: OK</p>
+<h6 id="span-idlist-repositories-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>[]<a href="#repository">Repository</a></p>
+<h5 id="span-idlist-repositories-500span-500---failed-to-list-repositories"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to list repositories</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idlist-repositories-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idlist-secretsspan-list-all-settings-without-the-values-listsecrets"><!-- raw HTML omitted --><!-- raw HTML omitted --> List all settings without the values. (<em>listSecrets</em>)</h3>
+<pre><code>POST /rest/api/1/vault/secrets
+</code></pre><h4 id="produces-19">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="all-responses-28">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#list-secrets-200">200</a></td>
+<td>OK</td>
+<td></td>
+<td style="text-align:center"></td>
+<td><a href="#list-secrets-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#list-secrets-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to load secrets</td>
+<td style="text-align:center"></td>
+<td><a href="#list-secrets-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-28">Responses</h4>
+<h5 id="span-idlist-secrets-200span-200"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200</h5>
+<p>Status: OK</p>
+<h6 id="span-idlist-secrets-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>[]<a href="#vault-setting">VaultSetting</a></p>
+<h5 id="span-idlist-secrets-500span-500---failed-to-load-secrets"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to load secrets</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idlist-secrets-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idlist-supported-platformsspan-lists-all-supported-platforms-listsupportedplatforms"><!-- raw HTML omitted --><!-- raw HTML omitted --> Lists all supported platforms. (<em>listSupportedPlatforms</em>)</h3>
+<pre><code>GET /rest/api/1/supported-platforms
+</code></pre><h4 id="produces-20">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="all-responses-29">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#list-supported-platforms-200">200</a></td>
+<td>OK</td>
+<td>the list of supported platform ids</td>
+<td style="text-align:center"></td>
+<td><a href="#list-supported-platforms-200-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-29">Responses</h4>
+<h5 id="span-idlist-supported-platforms-200span-200---the-list-of-supported-platform-ids"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200 - the list of supported platform ids</h5>
+<p>Status: OK</p>
+<h6 id="span-idlist-supported-platforms-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>[]<a href="#platform">Platform</a></p>
+<h3 id="span-idlist-usersspan-list-users-listusers"><!-- raw HTML omitted --><!-- raw HTML omitted --> list users (<em>listUsers</em>)</h3>
+<pre><code>POST /rest/api/1/users
+</code></pre><p>List users</p>
+<h4 id="produces-21">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="all-responses-30">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#list-users-200">200</a></td>
+<td>OK</td>
+<td></td>
+<td style="text-align:center"></td>
+<td><a href="#list-users-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#list-users-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to list user</td>
+<td style="text-align:center"></td>
+<td><a href="#list-users-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-30">Responses</h4>
+<h5 id="span-idlist-users-200span-200"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200</h5>
+<p>Status: OK</p>
+<h6 id="span-idlist-users-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>[]<a href="#user">User</a></p>
+<h5 id="span-idlist-users-500span-500---failed-to-list-user"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to list user</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idlist-users-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idrefresh-tokenspan-refresh-the-authentication-token-refreshtoken"><!-- raw HTML omitted --><!-- raw HTML omitted --> Refresh the authentication token. (<em>refreshToken</em>)</h3>
+<pre><code>POST /rest/api/1/auth/refresh
+</code></pre><h4 id="all-responses-31">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#refresh-token-200">200</a></td>
+<td>OK</td>
+<td>Status OK</td>
+<td style="text-align:center"></td>
+<td><a href="#refresh-token-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#refresh-token-401">401</a></td>
+<td>Unauthorized</td>
+<td>refresh token cookie not found</td>
+<td style="text-align:center">error refreshing token</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-31">Responses</h4>
+<h5 id="span-idrefresh-token-200span-200---status-ok"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200 - Status OK</h5>
+<p>Status: OK</p>
+<h6 id="span-idrefresh-token-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h5 id="span-idrefresh-token-401span-401---refresh-token-cookie-not-founderror-refreshing-token"><!-- raw HTML omitted --><!-- raw HTML omitted --> 401 - refresh token cookie not found|error refreshing token</h5>
+<p>Status: Unauthorized</p>
+<h6 id="span-idrefresh-token-401-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h3 id="span-idremove-command-rel-for-platform-commandspan-remove-a-relationship-to-a-platform-this-command-will-no-longer-be-running-for-that-platform-events-removecommandrelforplatformcommand"><!-- raw HTML omitted --><!-- raw HTML omitted --> Remove a relationship to a platform. This command will no longer be running for that platform events. (<em>removeCommandRelForPlatformCommand</em>)</h3>
+<pre><code>POST /rest/api/1/command/remove-command-rel-for-platform/{cmdid}/{repoid}
+</code></pre><h4 id="parameters-26">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cmdid</td>
+<td><code>path</code></td>
+<td>int (formatted integer)</td>
+<td><code>int64</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>repoid</td>
+<td><code>path</code></td>
+<td>int (formatted integer)</td>
+<td><code>int64</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-32">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#remove-command-rel-for-platform-command-200">200</a></td>
+<td>OK</td>
+<td>successfully removed relationship</td>
+<td style="text-align:center"></td>
+<td><a href="#remove-command-rel-for-platform-command-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#remove-command-rel-for-platform-command-400">400</a></td>
+<td>Bad Request</td>
+<td>invalid ids or platform not found</td>
+<td style="text-align:center"></td>
+<td><a href="#remove-command-rel-for-platform-command-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#remove-command-rel-for-platform-command-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to add relationship</td>
+<td style="text-align:center"></td>
+<td><a href="#remove-command-rel-for-platform-command-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-32">Responses</h4>
+<h5 id="span-idremove-command-rel-for-platform-command-200span-200---successfully-removed-relationship"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200 - successfully removed relationship</h5>
+<p>Status: OK</p>
+<h6 id="span-idremove-command-rel-for-platform-command-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h5 id="span-idremove-command-rel-for-platform-command-400span-400---invalid-ids-or-platform-not-found"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - invalid ids or platform not found</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-idremove-command-rel-for-platform-command-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idremove-command-rel-for-platform-command-500span-500---failed-to-add-relationship"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to add relationship</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idremove-command-rel-for-platform-command-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idremove-command-rel-for-repository-commandspan-remove-a-relationship-to-a-repository-this-command-will-no-longer-be-running-for-that-repository-events-removecommandrelforrepositorycommand"><!-- raw HTML omitted --><!-- raw HTML omitted --> Remove a relationship to a repository. This command will no longer be running for that repository events. (<em>removeCommandRelForRepositoryCommand</em>)</h3>
+<pre><code>POST /rest/api/1/command/remove-command-rel-for-repository/{cmdid}/{repoid}
+</code></pre><h4 id="parameters-27">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cmdid</td>
+<td><code>path</code></td>
+<td>int (formatted integer)</td>
+<td><code>int64</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>repoid</td>
+<td><code>path</code></td>
+<td>int (formatted integer)</td>
+<td><code>int64</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-33">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#remove-command-rel-for-repository-command-200">200</a></td>
+<td>OK</td>
+<td>successfully removed relationship</td>
+<td style="text-align:center"></td>
+<td><a href="#remove-command-rel-for-repository-command-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#remove-command-rel-for-repository-command-400">400</a></td>
+<td>Bad Request</td>
+<td>invalid ids or repositroy not found</td>
+<td style="text-align:center"></td>
+<td><a href="#remove-command-rel-for-repository-command-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#remove-command-rel-for-repository-command-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to add relationship</td>
+<td style="text-align:center"></td>
+<td><a href="#remove-command-rel-for-repository-command-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-33">Responses</h4>
+<h5 id="span-idremove-command-rel-for-repository-command-200span-200---successfully-removed-relationship"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200 - successfully removed relationship</h5>
+<p>Status: OK</p>
+<h6 id="span-idremove-command-rel-for-repository-command-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h5 id="span-idremove-command-rel-for-repository-command-400span-400---invalid-ids-or-repositroy-not-found"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - invalid ids or repositroy not found</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-idremove-command-rel-for-repository-command-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idremove-command-rel-for-repository-command-500span-500---failed-to-add-relationship"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to add relationship</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idremove-command-rel-for-repository-command-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idupdate-commandspan-updates-a-given-command-updatecommand"><!-- raw HTML omitted --><!-- raw HTML omitted --> Updates a given command. (<em>updateCommand</em>)</h3>
+<pre><code>POST /rest/api/1/command/update
+</code></pre><h4 id="consumes-6">Consumes</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="produces-22">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="parameters-28">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>command</td>
+<td><code>body</code></td>
+<td><a href="#command">Command</a></td>
+<td><code>models.Command</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-34">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#update-command-200">200</a></td>
+<td>OK</td>
+<td>successfully updated command</td>
+<td style="text-align:center"></td>
+<td><a href="#update-command-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#update-command-400">400</a></td>
+<td>Bad Request</td>
+<td>binding error</td>
+<td style="text-align:center"></td>
+<td><a href="#update-command-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#update-command-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to update the command</td>
+<td style="text-align:center"></td>
+<td><a href="#update-command-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-34">Responses</h4>
+<h5 id="span-idupdate-command-200span-200---successfully-updated-command"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200 - successfully updated command</h5>
+<p>Status: OK</p>
+<h6 id="span-idupdate-command-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p><a href="#command">Command</a></p>
+<h5 id="span-idupdate-command-400span-400---binding-error"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - binding error</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-idupdate-command-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idupdate-command-500span-500---failed-to-update-the-command"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to update the command</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idupdate-command-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idupdate-command-settingspan-create-a-new-command-setting-updatecommandsetting"><!-- raw HTML omitted --><!-- raw HTML omitted --> Create a new command setting. (<em>updateCommandSetting</em>)</h3>
+<pre><code>POST /rest/api/1/command/settings/update
+</code></pre><h4 id="produces-23">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="parameters-29">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>setting</td>
+<td><code>body</code></td>
+<td><a href="#command-setting">CommandSetting</a></td>
+<td><code>models.CommandSetting</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-35">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#update-command-setting-200">200</a></td>
+<td>OK</td>
+<td>successfully created command setting</td>
+<td style="text-align:center"></td>
+<td><a href="#update-command-setting-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#update-command-setting-400">400</a></td>
+<td>Bad Request</td>
+<td>binding error</td>
+<td style="text-align:center"></td>
+<td><a href="#update-command-setting-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#update-command-setting-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to create the command setting</td>
+<td style="text-align:center"></td>
+<td><a href="#update-command-setting-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-35">Responses</h4>
+<h5 id="span-idupdate-command-setting-200span-200---successfully-created-command-setting"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200 - successfully created command setting</h5>
+<p>Status: OK</p>
+<h6 id="span-idupdate-command-setting-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h5 id="span-idupdate-command-setting-400span-400---binding-error"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - binding error</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-idupdate-command-setting-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idupdate-command-setting-500span-500---failed-to-create-the-command-setting"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to create the command setting</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idupdate-command-setting-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idupdate-repositoryspan-updates-an-existing-repository-updaterepository"><!-- raw HTML omitted --><!-- raw HTML omitted --> Updates an existing repository. (<em>updateRepository</em>)</h3>
+<pre><code>POST /rest/api/1/repository/update
+</code></pre><h4 id="consumes-7">Consumes</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="produces-24">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="parameters-30">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>repository</td>
+<td><code>body</code></td>
+<td><a href="#repository">Repository</a></td>
+<td><code>models.Repository</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-36">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#update-repository-200">200</a></td>
+<td>OK</td>
+<td>the updated repository</td>
+<td style="text-align:center"></td>
+<td><a href="#update-repository-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#update-repository-400">400</a></td>
+<td>Bad Request</td>
+<td>failed to bind repository</td>
+<td style="text-align:center"></td>
+<td><a href="#update-repository-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#update-repository-404">404</a></td>
+<td>Not Found</td>
+<td>repository not found</td>
+<td style="text-align:center"></td>
+<td><a href="#update-repository-404-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#update-repository-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to update repository</td>
+<td style="text-align:center"></td>
+<td><a href="#update-repository-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-36">Responses</h4>
+<h5 id="span-idupdate-repository-200span-200---the-updated-repository"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200 - the updated repository</h5>
+<p>Status: OK</p>
+<h6 id="span-idupdate-repository-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p><a href="#repository">Repository</a></p>
+<h5 id="span-idupdate-repository-400span-400---failed-to-bind-repository"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - failed to bind repository</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-idupdate-repository-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idupdate-repository-404span-404---repository-not-found"><!-- raw HTML omitted --><!-- raw HTML omitted --> 404 - repository not found</h5>
+<p>Status: Not Found</p>
+<h6 id="span-idupdate-repository-404-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idupdate-repository-500span-500---failed-to-update-repository"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to update repository</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idupdate-repository-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idupdate-secretspan-updates-an-existing-secret-updatesecret"><!-- raw HTML omitted --><!-- raw HTML omitted --> Updates an existing secret. (<em>updateSecret</em>)</h3>
+<pre><code>POST /rest/api/1/vault/secret/update
+</code></pre><h4 id="consumes-8">Consumes</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="parameters-31">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>secret</td>
+<td><code>body</code></td>
+<td><a href="#vault-setting">VaultSetting</a></td>
+<td><code>models.VaultSetting</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-37">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#update-secret-200">200</a></td>
+<td>OK</td>
+<td>OK setting successfully updated</td>
+<td style="text-align:center"></td>
+<td><a href="#update-secret-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#update-secret-400">400</a></td>
+<td>Bad Request</td>
+<td>invalid json payload</td>
+<td style="text-align:center"></td>
+<td><a href="#update-secret-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#update-secret-404">404</a></td>
+<td>Not Found</td>
+<td>setting not found</td>
+<td style="text-align:center"></td>
+<td><a href="#update-secret-404-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#update-secret-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to update secret</td>
+<td style="text-align:center"></td>
+<td><a href="#update-secret-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-37">Responses</h4>
+<h5 id="span-idupdate-secret-200span-200---ok-setting-successfully-updated"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200 - OK setting successfully updated</h5>
+<p>Status: OK</p>
+<h6 id="span-idupdate-secret-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h5 id="span-idupdate-secret-400span-400---invalid-json-payload"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - invalid json payload</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-idupdate-secret-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idupdate-secret-404span-404---setting-not-found"><!-- raw HTML omitted --><!-- raw HTML omitted --> 404 - setting not found</h5>
+<p>Status: Not Found</p>
+<h6 id="span-idupdate-secret-404-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idupdate-secret-500span-500---failed-to-update-secret"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to update secret</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idupdate-secret-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idupdate-userspan-updates-an-existing-user-updateuser"><!-- raw HTML omitted --><!-- raw HTML omitted --> Updates an existing user. (<em>updateUser</em>)</h3>
+<pre><code>POST /rest/api/1/user/update
+</code></pre><h4 id="consumes-9">Consumes</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="produces-25">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="parameters-32">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user</td>
+<td><code>body</code></td>
+<td><a href="#user">User</a></td>
+<td><code>models.User</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-38">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#update-user-200">200</a></td>
+<td>OK</td>
+<td>user successfully updated</td>
+<td style="text-align:center"></td>
+<td><a href="#update-user-200-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#update-user-400">400</a></td>
+<td>Bad Request</td>
+<td>invalid json payload</td>
+<td style="text-align:center"></td>
+<td><a href="#update-user-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#update-user-404">404</a></td>
+<td>Not Found</td>
+<td>user not found</td>
+<td style="text-align:center"></td>
+<td><a href="#update-user-404-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#update-user-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to update user</td>
+<td style="text-align:center"></td>
+<td><a href="#update-user-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-38">Responses</h4>
+<h5 id="span-idupdate-user-200span-200---user-successfully-updated"><!-- raw HTML omitted --><!-- raw HTML omitted --> 200 - user successfully updated</h5>
+<p>Status: OK</p>
+<h6 id="span-idupdate-user-200-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p><a href="#user">User</a></p>
+<h5 id="span-idupdate-user-400span-400---invalid-json-payload"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - invalid json payload</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-idupdate-user-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idupdate-user-404span-404---user-not-found"><!-- raw HTML omitted --><!-- raw HTML omitted --> 404 - user not found</h5>
+<p>Status: Not Found</p>
+<h6 id="span-idupdate-user-404-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idupdate-user-500span-500---failed-to-update-user"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to update user</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idupdate-user-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-idupload-commandspan-upload-a-command-to-set-up-anything-for-the-command-like-schedules-etc-uploadcommand"><!-- raw HTML omitted --><!-- raw HTML omitted --> Upload a command. To set up anything for the command, like schedules etc, (<em>uploadCommand</em>)</h3>
+<pre><code>POST /rest/api/1/command
+</code></pre><p>the command has to be edited. We don&rsquo;t support uploading the same thing twice.
+If the command binary needs to be updated, delete the command and upload the
+new binary.</p>
+<h4 id="produces-26">Produces</h4>
+<ul>
+<li>application/json</li>
+</ul>
+<h4 id="all-responses-39">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#upload-command-201">201</a></td>
+<td>Created</td>
+<td>in case of successful file upload</td>
+<td style="text-align:center"></td>
+<td><a href="#upload-command-201-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#upload-command-400">400</a></td>
+<td>Bad Request</td>
+<td>invalid file format or command already exists</td>
+<td style="text-align:center"></td>
+<td><a href="#upload-command-400-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#upload-command-500">500</a></td>
+<td>Internal Server Error</td>
+<td>failed to upload file, create plugin, create command or copy operations</td>
+<td style="text-align:center"></td>
+<td><a href="#upload-command-500-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-39">Responses</h4>
+<h5 id="span-idupload-command-201span-201---in-case-of-successful-file-upload"><!-- raw HTML omitted --><!-- raw HTML omitted --> 201 - in case of successful file upload</h5>
+<p>Status: Created</p>
+<h6 id="span-idupload-command-201-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p><a href="#command">Command</a></p>
+<h5 id="span-idupload-command-400span-400---invalid-file-format-or-command-already-exists"><!-- raw HTML omitted --><!-- raw HTML omitted --> 400 - invalid file format or command already exists</h5>
+<p>Status: Bad Request</p>
+<h6 id="span-idupload-command-400-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h5 id="span-idupload-command-500span-500---failed-to-upload-file-create-plugin-create-command-or-copy-operations"><!-- raw HTML omitted --><!-- raw HTML omitted --> 500 - failed to upload file, create plugin, create command or copy operations</h5>
+<p>Status: Internal Server Error</p>
+<h6 id="span-idupload-command-500-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<p>any</p>
+<h3 id="span-iduser-callbackspan-this-is-the-url-to-which-google-calls-back-after-a-successful-login-usercallback"><!-- raw HTML omitted --><!-- raw HTML omitted --> This is the url to which Google calls back after a successful login. (<em>userCallback</em>)</h3>
+<pre><code>GET /rest/api/1/auth/callback
+</code></pre><p>Creates a cookie which will hold the authenticated user.</p>
+<h4 id="parameters-33">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td><code>query</code></td>
+<td>string</td>
+<td><code>string</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>the authorization code provided by Google</td>
+</tr>
+<tr>
+<td>state</td>
+<td><code>query</code></td>
+<td>string</td>
+<td><code>string</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>the state variable defined by Google</td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-40">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#user-callback-308">308</a></td>
+<td>Permanent Redirect</td>
+<td>the permanent redirect url</td>
+<td style="text-align:center"></td>
+<td><a href="#user-callback-308-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#user-callback-401">401</a></td>
+<td>Unauthorized</td>
+<td>error verifying state</td>
+<td style="text-align:center">error during token exchange</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#user-callback-404">404</a></td>
+<td>Not Found</td>
+<td>error invalid state</td>
+<td style="text-align:center">code</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-40">Responses</h4>
+<h5 id="span-iduser-callback-308span-308---the-permanent-redirect-url"><!-- raw HTML omitted --><!-- raw HTML omitted --> 308 - the permanent redirect url</h5>
+<p>Status: Permanent Redirect</p>
+<h6 id="span-iduser-callback-308-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h5 id="span-iduser-callback-401span-401---error-verifying-state--error-during-token-exchange"><!-- raw HTML omitted --><!-- raw HTML omitted --> 401 - error verifying state | error during token exchange</h5>
+<p>Status: Unauthorized</p>
+<h6 id="span-iduser-callback-401-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h5 id="span-iduser-callback-404span-404---error-invalid-statecode"><!-- raw HTML omitted --><!-- raw HTML omitted --> 404 - error invalid state|code</h5>
+<p>Status: Not Found</p>
+<h6 id="span-iduser-callback-404-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h3 id="span-iduser-loginspan-user-login-userlogin"><!-- raw HTML omitted --><!-- raw HTML omitted --> User login. (<em>userLogin</em>)</h3>
+<pre><code>GET /rest/api/1/auth/login
+</code></pre><h4 id="parameters-34">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Source</th>
+<th>Type</th>
+<th>Go type</th>
+<th>Separator</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>redirect_url</td>
+<td><code>query</code></td>
+<td>string</td>
+<td><code>string</code></td>
+<td></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>the redirect URL coming from Google to redirect login to</td>
+</tr>
+</tbody>
+</table>
+<h4 id="all-responses-41">All responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
+<th style="text-align:center">Has headers</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#user-login-307">307</a></td>
+<td>Temporary Redirect</td>
+<td>the redirect url to the login</td>
+<td style="text-align:center"></td>
+<td><a href="#user-login-307-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#user-login-401">401</a></td>
+<td>Unauthorized</td>
+<td>error generating state</td>
+<td style="text-align:center"></td>
+<td><a href="#user-login-401-schema">schema</a></td>
+</tr>
+<tr>
+<td><a href="#user-login-404">404</a></td>
+<td>Not Found</td>
+<td>error invalid redirect_url</td>
+<td style="text-align:center"></td>
+<td><a href="#user-login-404-schema">schema</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-41">Responses</h4>
+<h5 id="span-iduser-login-307span-307---the-redirect-url-to-the-login"><!-- raw HTML omitted --><!-- raw HTML omitted --> 307 - the redirect url to the login</h5>
+<p>Status: Temporary Redirect</p>
+<h6 id="span-iduser-login-307-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h5 id="span-iduser-login-401span-401---error-generating-state"><!-- raw HTML omitted --><!-- raw HTML omitted --> 401 - error generating state</h5>
+<p>Status: Unauthorized</p>
+<h6 id="span-iduser-login-401-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h5 id="span-iduser-login-404span-404---error-invalid-redirect_url"><!-- raw HTML omitted --><!-- raw HTML omitted --> 404 - error invalid redirect_url</h5>
+<p>Status: Not Found</p>
+<h6 id="span-iduser-login-404-schemaspan-schema"><!-- raw HTML omitted --><!-- raw HTML omitted --> Schema</h6>
+<h2 id="models">Models</h2>
+<h3 id="span-idapi-keyspan-apikey"><!-- raw HTML omitted --><!-- raw HTML omitted --> APIKey</h3>
+<p><strong>Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Go type</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>APIKeyID</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>APIKeyID is a generated id of the key.</td>
+<td></td>
+</tr>
+<tr>
+<td>APIKeySecret</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>APIKeySecret is a generated secret, aka, the key.</td>
+<td></td>
+</tr>
+<tr>
+<td>CreateAt</td>
+<td>date-time (formatted string)</td>
+<td><code>strfmt.DateTime</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>CreateAt defines when this key was created.</td>
+<td><code>time.Now()</code></td>
+</tr>
+<tr>
+<td>ID</td>
+<td>int64 (formatted integer)</td>
+<td><code>int64</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>ID of the key. This is auto-generated.</td>
+<td></td>
+</tr>
+<tr>
+<td>Name</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>Name of the key</td>
+<td></td>
+</tr>
+<tr>
+<td>TTL</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>TTL defines how long this key can live in duration.</td>
+<td><code>1h10m10s</code></td>
+</tr>
+<tr>
+<td>UserID</td>
+<td>int64 (formatted integer)</td>
+<td><code>int64</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>UserID is the ID of the user to which this key belongs.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="span-idauthspan-auth"><!-- raw HTML omitted --><!-- raw HTML omitted --> Auth</h3>
+<p><strong>Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Go type</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Password</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center"></td>
+<td></td>
+<td>Password is the password required to access the platform for this repositroy.</td>
+<td></td>
+</tr>
+<tr>
+<td>SSH</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center"></td>
+<td></td>
+<td>SSH private key.</td>
+<td></td>
+</tr>
+<tr>
+<td>Secret</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>Hook secret to create a hook with on the respective platform.</td>
+<td></td>
+</tr>
+<tr>
+<td>Username</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center"></td>
+<td></td>
+<td>Username is the username required to access the platform for this repositroy.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="span-idcommandspan-command"><!-- raw HTML omitted --><!-- raw HTML omitted --> Command</h3>
+<p><strong>Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Go type</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enabled</td>
+<td>boolean</td>
+<td><code>bool</code></td>
+<td style="text-align:center"></td>
+<td></td>
+<td>Enabled defines if this command can be executed or not.</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>Filename</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>Filename is the name of the file which holds this command.</td>
+<td><code>my_awesome_command</code></td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>Hash is the hash of the command file.</td>
+<td></td>
+</tr>
+<tr>
+<td>ID</td>
+<td>int64 (formatted integer)</td>
+<td><code>int64</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>ID of the command. Generated.</td>
+<td></td>
+</tr>
+<tr>
+<td>Location</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>Location is where this command is located at. This is the full path of the containing folder.</td>
+<td><code>/tmp/krok-commands</code></td>
+</tr>
+<tr>
+<td>Name</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>Name of the command.</td>
+<td></td>
+</tr>
+<tr>
+<td>Repositories</td>
+<td>[]<a href="#repository">Repository</a></td>
+<td><code>[]*Repository</code></td>
+<td style="text-align:center"></td>
+<td></td>
+<td>Repositories that this command can execute on.</td>
+<td></td>
+</tr>
+<tr>
+<td>Schedule</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center"></td>
+<td></td>
+<td>Schedule of the command.</td>
+<td><code>0 * * * * // follows cron job syntax.</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="span-idcommand-runspan-commandrun"><!-- raw HTML omitted --><!-- raw HTML omitted --> CommandRun</h3>
+<blockquote>
+<p>CommandRun is a single run of a command belonging to an event
+including things like, state, event, and created at.</p>
+</blockquote>
+<p><strong>Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Go type</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CommandName</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>CommandName is the name of the command that is being executed.</td>
+<td></td>
+</tr>
+<tr>
+<td>CreateAt</td>
+<td>date-time (formatted string)</td>
+<td><code>strfmt.DateTime</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>CreatedAt is the time when this command run was created.</td>
+<td></td>
+</tr>
+<tr>
+<td>EventID</td>
+<td>int64 (formatted integer)</td>
+<td><code>int64</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>EventID is the ID of the event that this run belongs to.</td>
+<td></td>
+</tr>
+<tr>
+<td>ID</td>
+<td>int64 (formatted integer)</td>
+<td><code>int64</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>ID is a generatd identifier.</td>
+<td></td>
+</tr>
+<tr>
+<td>Outcome</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center"></td>
+<td></td>
+<td>Outcome is any output of the command. Stdout and stderr combined.</td>
+<td></td>
+</tr>
+<tr>
+<td>Status</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>Status is the current state of the command run.</td>
+<td><code>running, failed, success</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="span-idcommand-settingspan-commandsetting"><!-- raw HTML omitted --><!-- raw HTML omitted --> CommandSetting</h3>
+<p><strong>Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Go type</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CommandID</td>
+<td>int64 (formatted integer)</td>
+<td><code>int64</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>CommandID is the ID of the command to which these settings belong to.</td>
+<td></td>
+</tr>
+<tr>
+<td>ID</td>
+<td>int64 (formatted integer)</td>
+<td><code>int64</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>ID is a generated ID.</td>
+<td></td>
+</tr>
+<tr>
+<td>InVault</td>
+<td>boolean</td>
+<td><code>bool</code></td>
+<td style="text-align:center"></td>
+<td></td>
+<td>InVault defines if this is sensitive information and should be stored securely.</td>
+<td></td>
+</tr>
+<tr>
+<td>Key</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>Key is the name of the setting.</td>
+<td></td>
+</tr>
+<tr>
+<td>Value</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>Value is the value of the setting.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="span-ideventspan-event"><!-- raw HTML omitted --><!-- raw HTML omitted --> Event</h3>
+<blockquote>
+<p>Event contains details about a platform event, such as
+the repository it belongs to and the event that created it&hellip;</p>
+</blockquote>
+<p><strong>Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Go type</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CommandRuns</td>
+<td>[]<a href="#command-run">CommandRun</a></td>
+<td><code>[]*CommandRun</code></td>
+<td style="text-align:center"></td>
+<td></td>
+<td>CommandRuns contains a list of CommandRuns which executed for this event.</td>
+<td></td>
+</tr>
+<tr>
+<td>CreateAt</td>
+<td>date-time (formatted string)</td>
+<td><code>strfmt.DateTime</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>CreatedAt contains the timestamp when this event occurred.</td>
+<td></td>
+</tr>
+<tr>
+<td>EventID</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>EvenID is the ID of the corresponding event on the given platform. If that cannot be determined</td>
+<td></td>
+</tr>
+<tr>
+<td>an ID is generated.</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ID</td>
+<td>int64 (formatted integer)</td>
+<td><code>int64</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>ID is a generated ID.</td>
+<td></td>
+</tr>
+<tr>
+<td>Payload</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>Payload defines the information received from the platform for this event.</td>
+<td></td>
+</tr>
+<tr>
+<td>RepositoryID</td>
+<td>int64 (formatted integer)</td>
+<td><code>int64</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>RepositoryID contains the ID of the repository for which this event occurred.</td>
+<td></td>
+</tr>
+<tr>
+<td>VCS</td>
+<td>int64 (formatted integer)</td>
+<td><code>int64</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>VCS is the ID of the platform on which this even occurred.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="span-idgit-labspan-gitlab"><!-- raw HTML omitted --><!-- raw HTML omitted --> GitLab</h3>
+<p><strong>Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Go type</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ProjectID</td>
+<td>int64 (formatted integer)</td>
+<td><code>int64</code></td>
+<td style="text-align:center"></td>
+<td></td>
+<td>ProjectID is an optional ID which defines a project in Gitlab.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="span-idlist-optionsspan-listoptions"><!-- raw HTML omitted --><!-- raw HTML omitted --> ListOptions</h3>
+<p><strong>Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Go type</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EndDate</td>
+<td>date-time (formatted string)</td>
+<td><code>strfmt.DateTime</code></td>
+<td style="text-align:center"></td>
+<td></td>
+<td>EndDate defines a date of end to look for events. Not Inclusive.</td>
+<td><code>2021-02-03</code></td>
+</tr>
+<tr>
+<td>Name</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center"></td>
+<td></td>
+<td>Name of the context for which this option is used.</td>
+<td><code>\&quot;partialNameOfACommand\</code></td>
+</tr>
+<tr>
+<td>Page</td>
+<td>int64 (formatted integer)</td>
+<td><code>int64</code></td>
+<td style="text-align:center"></td>
+<td></td>
+<td>Current Page</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td>PageSize</td>
+<td>int64 (formatted integer)</td>
+<td><code>int64</code></td>
+<td style="text-align:center"></td>
+<td></td>
+<td>Items per Page</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>required false | <code>10</code> |
+| StartingDate | date-time (formatted string)| <code>strfmt.DateTime</code> |  | | StartingDate defines a date of start to look for events. Inclusive. | <code>2021-02-02</code> |
+| VCS | int64 (formatted integer)| <code>int64</code> |  | | Only list all entries for a given platform ID. |  |</p>
+<h3 id="span-idplatformspan-platform"><!-- raw HTML omitted --><!-- raw HTML omitted --> Platform</h3>
+<p><strong>Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Go type</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ID</td>
+<td>int64 (formatted integer)</td>
+<td><code>int64</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>ID of the platform. This is choosen.</td>
+<td></td>
+</tr>
+<tr>
+<td>Name</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>Name of the platform.</td>
+<td><code>github, gitlab, gitea</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="span-idrepositoryspan-repository"><!-- raw HTML omitted --><!-- raw HTML omitted --> Repository</h3>
+<p><strong>Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Go type</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Commands</td>
+<td>[]<a href="#command">Command</a></td>
+<td><code>[]*Command</code></td>
+<td style="text-align:center"></td>
+<td></td>
+<td>Commands contains all the commands which this repository is attached to.</td>
+<td></td>
+</tr>
+<tr>
+<td>Events</td>
+<td>[]string</td>
+<td><code>[]string</code></td>
+<td style="text-align:center"></td>
+<td></td>
+<td>TODO: Think about storing this</td>
+<td></td>
+</tr>
+<tr>
+<td>ID</td>
+<td>int64 (formatted integer)</td>
+<td><code>int64</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>ID of the repository. Auto-generated.</td>
+<td></td>
+</tr>
+<tr>
+<td>Name</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center"></td>
+<td></td>
+<td>Name of the repository.</td>
+<td></td>
+</tr>
+<tr>
+<td>URL</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>URL of the repository.</td>
+<td></td>
+</tr>
+<tr>
+<td>UniqueURL</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>This field is not saved in the DB but generated every time the repository</td>
+<td></td>
+</tr>
+<tr>
+<td>details needs to be displayed.</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>VCS</td>
+<td>int64 (formatted integer)</td>
+<td><code>int64</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>VCS Defines which handler will be used. For values, see platforms.go.</td>
+<td></td>
+</tr>
+<tr>
+<td>auth</td>
+<td><a href="#auth">Auth</a></td>
+<td><code>Auth</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>git_lab</td>
+<td><a href="#git-lab">GitLab</a></td>
+<td><code>GitLab</code></td>
+<td style="text-align:center"></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="span-iduserspan-user"><!-- raw HTML omitted --><!-- raw HTML omitted --> User</h3>
+<p><strong>Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Go type</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>APIKeys</td>
+<td>[]<a href="#api-key">APIKey</a></td>
+<td><code>[]*APIKey</code></td>
+<td style="text-align:center"></td>
+<td></td>
+<td>APIKeys contains generated api access keys for this user.</td>
+<td></td>
+</tr>
+<tr>
+<td>DisplayName</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center"></td>
+<td></td>
+<td>DisplayName is the name of the user.</td>
+<td></td>
+</tr>
+<tr>
+<td>Email</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>Email of the user.</td>
+<td></td>
+</tr>
+<tr>
+<td>ID</td>
+<td>int64 (formatted integer)</td>
+<td><code>int64</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>ID of the user. This is auto-generated.</td>
+<td></td>
+</tr>
+<tr>
+<td>LastLogin</td>
+<td>date-time (formatted string)</td>
+<td><code>strfmt.DateTime</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>LastLogin contains the timestamp of the last successful login of this user.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="span-iduser-auth-detailsspan-userauthdetails"><!-- raw HTML omitted --><!-- raw HTML omitted --> UserAuthDetails</h3>
+<p><strong>Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Go type</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Email</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>Email is the email of the registered user.</td>
+<td></td>
+</tr>
+<tr>
+<td>FirstName</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>FirstName is the first name of the user.</td>
+<td></td>
+</tr>
+<tr>
+<td>LastName</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>LastName is the last name of the user.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="span-idv-c-s-tokenspan-vcstoken"><!-- raw HTML omitted --><!-- raw HTML omitted --> VCSToken</h3>
+<p><strong>Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Go type</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Token</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>Token is the actual token.</td>
+<td></td>
+</tr>
+<tr>
+<td>VCS</td>
+<td>int64 (formatted integer)</td>
+<td><code>int64</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>VCS is the ID of the platform to which this token belongs to.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="span-idvault-settingspan-vaultsetting"><!-- raw HTML omitted --><!-- raw HTML omitted --> VaultSetting</h3>
+<blockquote>
+<p>VaultSetting defines a setting that comes from the vault</p>
+</blockquote>
+<p><strong>Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Go type</th>
+<th style="text-align:center">Required</th>
+<th>Default</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Key</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>Key is the name of the setting.</td>
+<td></td>
+</tr>
+<tr>
+<td>Value</td>
+<td>string</td>
+<td><code>string</code></td>
+<td style="text-align:center">✓</td>
+<td></td>
+<td>Value is the value of the setting.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 
 
 
@@ -740,19 +5141,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1626873883"></script>
-    <script src="/js/perfect-scrollbar.min.js?1626873883"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1626873883"></script>
-    <script src="/js/jquery.sticky.js?1626873883"></script>
-    <script src="/js/featherlight.min.js?1626873883"></script>
-    <script src="/js/highlight.pack.js?1626873883"></script>
+    <script src="/js/clipboard.min.js?1626966632"></script>
+    <script src="/js/perfect-scrollbar.min.js?1626966632"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1626966632"></script>
+    <script src="/js/jquery.sticky.js?1626966632"></script>
+    <script src="/js/featherlight.min.js?1626966632"></script>
+    <script src="/js/highlight.pack.js?1626966632"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1626873883"></script>
-    <script src="/js/learn.js?1626873883"></script>
-    <script src="/js/hugo-learn.js?1626873883"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1626966632"></script>
+    <script src="/js/learn.js?1626966632"></script>
+    <script src="/js/hugo-learn.js?1626966632"></script>
     
         
-            <script src="/mermaid/mermaid.js?1626873883"></script>
+            <script src="/mermaid/mermaid.js?1626966632"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });
