@@ -12,20 +12,20 @@
     <title>Docker :: Documentation for Krok</title>
 
     
-    <link href="/css/nucleus.css?1627975912" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1627975912" rel="stylesheet">
-    <link href="/css/hybrid.css?1627975912" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1627975912" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1627975912" rel="stylesheet">
-    <link href="/css/auto-complete.css?1627975912" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1627975912" rel="stylesheet">
-    <link href="/css/theme.css?1627975912" rel="stylesheet">
-    <link href="/css/tabs.css?1627975912" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1627975912" rel="stylesheet">
+    <link href="/css/nucleus.css?1628018013" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1628018013" rel="stylesheet">
+    <link href="/css/hybrid.css?1628018013" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1628018013" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1628018013" rel="stylesheet">
+    <link href="/css/auto-complete.css?1628018013" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1628018013" rel="stylesheet">
+    <link href="/css/theme.css?1628018013" rel="stylesheet">
+    <link href="/css/tabs.css?1628018013" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1628018013" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1627975912"></script>
+    <script src="/js/jquery-3.3.1.min.js?1628018013"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -90,14 +90,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1627975912"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1627975912"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1628018013"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1628018013"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/krok.app";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1627975912"></script>
+<script type="text/javascript" src="/js/search.js?1628018013"></script>
 
     
   </div>
@@ -510,7 +510,12 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#images">Images</a></li>
+    <li><a href="#docker-compose">docker-compose</a></li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -535,7 +540,64 @@
 
 
 	<p>Using Docker and docker-compose.</p>
+<h2 id="images">Images</h2>
+<h2 id="docker-compose">docker-compose</h2>
+<p>The following docker-compose yaml file will deploy Krok with the bare minimum requirements and local volumes and traefik.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.3&#39;</span>
 
+<span style="color:#f92672">services</span>:
+  <span style="color:#f92672">krok</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">krokhook/krok:v0.0.4</span>
+    <span style="color:#f92672">networks</span>:
+      - <span style="color:#ae81ff">traefik-public</span>
+      - <span style="color:#ae81ff">default</span>
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">/vault:/vault</span>
+      - <span style="color:#ae81ff">/plugins:/plugins</span>
+    <span style="color:#f92672">deploy</span>:
+      <span style="color:#f92672">labels</span>:
+        - <span style="color:#e6db74">&#34;traefik.backend=krok&#34;</span>
+        - <span style="color:#e6db74">&#34;traefik.constraint-label=traefik-public&#34;</span>
+        - <span style="color:#e6db74">&#34;traefik.docker.network=traefik-public&#34;</span>
+        - <span style="color:#e6db74">&#34;traefik.enable=true&#34;</span>
+        - <span style="color:#e6db74">&#34;traefik.http.routers.krok-http.rule=Host(`krok.cronohub.org`)&#34;</span>
+        - <span style="color:#e6db74">&#34;traefik.http.routers.krok-http.entrypoints=http&#34;</span>
+        - <span style="color:#e6db74">&#34;traefik.http.routers.krok-http.middlewares=https-redirect&#34;</span>
+        - <span style="color:#e6db74">&#34;traefik.http.routers.krok-https.rule=Host(`krok.cronohub.org`)&#34;</span>
+        - <span style="color:#e6db74">&#34;traefik.http.routers.krok-https.entrypoints=https&#34;</span>
+        - <span style="color:#e6db74">&#34;traefik.http.routers.krok-https.tls=true&#34;</span>
+        - <span style="color:#e6db74">&#34;traefik.http.routers.krok-https.tls.certresolver=le&#34;</span>
+        - <span style="color:#e6db74">&#34;traefik.http.services.krok.loadbalancer.server.port=3000&#34;</span>
+    <span style="color:#f92672">command</span>:
+      - --<span style="color:#ae81ff">hookbase=krok.app</span>
+      - --<span style="color:#ae81ff">db-username=krok</span>
+      - --<span style="color:#ae81ff">db-hostname=krokdb:5432</span>
+      - --<span style="color:#ae81ff">db-password=password123</span>
+      - --<span style="color:#ae81ff">file-vault-location=/vault</span>
+      - --<span style="color:#ae81ff">plugin-location=/plugins</span>
+    <span style="color:#f92672">ports</span>:
+      - <span style="color:#ae81ff">9998</span>:<span style="color:#ae81ff">9998</span>
+    <span style="color:#f92672">depends_on</span>:
+      - <span style="color:#ae81ff">krokdb</span>
+
+  <span style="color:#f92672">krokdb</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">postgres:11</span>
+    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
+    <span style="color:#f92672">environment</span>:
+      - <span style="color:#ae81ff">POSTGRES_USER=krok</span>
+      - <span style="color:#ae81ff">POSTGRES_PASSWORD=password123</span>
+      - <span style="color:#ae81ff">POSTGRES_DB=krok</span>
+    <span style="color:#f92672">networks</span>:
+      - <span style="color:#ae81ff">traefik-public</span>
+      - <span style="color:#ae81ff">default</span>
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">/postgres:/var/lib/postgresql/data</span>
+      - <span style="color:#ae81ff">/dbinit:/docker-entrypoint-initdb.d</span>
+
+<span style="color:#f92672">networks</span>:
+  <span style="color:#f92672">traefik-public</span>:
+    <span style="color:#f92672">external</span>: <span style="color:#66d9ef">true</span>
+</code></pre></div>
 
 
 
@@ -771,19 +833,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1627975912"></script>
-    <script src="/js/perfect-scrollbar.min.js?1627975912"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1627975912"></script>
-    <script src="/js/jquery.sticky.js?1627975912"></script>
-    <script src="/js/featherlight.min.js?1627975912"></script>
-    <script src="/js/highlight.pack.js?1627975912"></script>
+    <script src="/js/clipboard.min.js?1628018013"></script>
+    <script src="/js/perfect-scrollbar.min.js?1628018013"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1628018013"></script>
+    <script src="/js/jquery.sticky.js?1628018013"></script>
+    <script src="/js/featherlight.min.js?1628018013"></script>
+    <script src="/js/highlight.pack.js?1628018013"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1627975912"></script>
-    <script src="/js/learn.js?1627975912"></script>
-    <script src="/js/hugo-learn.js?1627975912"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1628018013"></script>
+    <script src="/js/learn.js?1628018013"></script>
+    <script src="/js/hugo-learn.js?1628018013"></script>
     
         
-            <script src="/mermaid/mermaid.js?1627975912"></script>
+            <script src="/mermaid/mermaid.js?1628018013"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });
