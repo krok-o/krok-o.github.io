@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Development :: Documentation for Krok</title>
+    <title>Concepts :: Documentation for Krok</title>
 
     
     <link href="/css/nucleus.css?1630862615" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/basics/installation/dev/">
+  <body class="" data-url="/concepts/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -117,7 +117,7 @@
   
     
     <li data-nav-id="/basics/" title="Basics" class="dd-item
-        parent
+        
         
         
         ">
@@ -176,7 +176,7 @@
   
     
     <li data-nav-id="/basics/installation/" title="Installation" class="dd-item
-        parent
+        
         
         
         ">
@@ -263,8 +263,8 @@
   
     
     <li data-nav-id="/basics/installation/dev/" title="Development" class="dd-item
-        parent
-        active
+        
+        
         
         ">
       <a href="/basics/installation/dev/">
@@ -335,8 +335,8 @@
   
     
     <li data-nav-id="/concepts/" title="Concepts" class="dd-item
-        
-        
+        parent
+        active
         
         ">
       <a href="/concepts/">
@@ -599,8 +599,6 @@
                         </a>
                     </span>
                   
-                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
-                  
                   <span class="links">
                  
                  
@@ -611,19 +609,7 @@
             
           
           
-            
-            
-          
-          
-            
-            
-          
-          
-            <a href='/'>Krok Documentation</a> > <a href='/basics/'>Basics</a> > <a href='/basics/installation/'>Installation</a> > Development
-          
-        
-          
-        
+            <a href='/'>Krok Documentation</a> > Concepts
           
         
           
@@ -632,37 +618,6 @@
                   </span>
                 </div>
                 
-                    <div class="progress">
-    <div class="wrapper">
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#test-database">Test Database</a></li>
-    <li><a href="#packages">Packages</a>
-      <ul>
-        <li><a href="#cmd">/cmd</a></li>
-        <li><a href="#dbinit">/dbinit</a></li>
-        <li><a href="#docs">/docs</a></li>
-        <li><a href="#errors">/errors</a></li>
-        <li><a href="#generate_interface_mocks">/generate_interface_mocks</a></li>
-        <li><a href="#helm">/helm</a></li>
-        <li><a href="#swagger">/swagger</a></li>
-        <li><a href="#tests">/tests</a></li>
-        <li><a href="#github">/.github</a></li>
-        <li><a href="#pkgproviders">/pkg/providers</a></li>
-        <li><a href="#pkgserver">/pkg/server</a></li>
-        <li><a href="#pkgmodels">/pkg/models</a></li>
-      </ul>
-    </li>
-    <li><a href="#tests-1">Tests</a></li>
-    <li><a href="#makefile">Makefile</a></li>
-    <li><a href="#swagger-1">Swagger</a></li>
-    <li><a href="#releases-and-docker-container">Releases and Docker Container</a></li>
-  </ul>
-</nav>
-    </div>
-</div>
-
-                
               </div>
             </div>
             
@@ -670,150 +625,18 @@
         
         </div>
         
+          <div id="chapter">
+        
         <div id="body-inner">
-          
-            <h1>
-              
-              Development
-            </h1>
           
 
         
 
 
 
-	<p>Building from source and using a test database.</p>
-<p>It&rsquo;s really simple to build and deploy Krok for development. Here, I&rsquo;m going to describe the basic
-architecture of Krok, and how to build and develop it.</p>
-<h2 id="test-database">Test Database</h2>
-<p>Krok server comes with a Makefile command to create and run a test database.</p>
-<p>To execute it, simply run:</p>
-<pre><code>make test-db
-</code></pre><p>To remove the test database run:</p>
-<pre><code>make rm-test-db
-</code></pre><p>The integration tests located under <code>tests/livestore</code> contain tests which test with an actual database.
-This is done with an ephemeral test container that is bootstrapped on each test run and then scrapped.
-The code responsible for that is under <code>tests/livestore/init_test.go</code> which hijacks the main test runner
-of Go to launch a Docker container first. Then sets up the variable <code>hostname</code> which will contain the ephemeral
-container&rsquo;s port endpoint.</p>
-<h2 id="packages">Packages</h2>
-<p>The following packages are of relevance:</p>
-<h3 id="cmd">/cmd</h3>
-<p>The entry point of the root command for Krok. Inside, <code>root.go</code> wires up all the dependencies of the providers
-contained under pkg/providers.</p>
-<h3 id="dbinit">/dbinit</h3>
-<p>Contains the SQL script which primes the database with the correct schema.</p>
-<h3 id="docs">/docs</h3>
-<p>Contains release docs and the swagger main doc file.</p>
-<h3 id="errors">/errors</h3>
-<p>Defines the errors which are returned by the Krok API.</p>
-<h3 id="generate_interface_mocks">/generate_interface_mocks</h3>
-<p>Contains a small Go script which gathers all of the interfaces defined in pkg/providers. It generates mockery
-stubs for all of them to be used in unit tests.</p>
-<h3 id="helm">/helm</h3>
-<p>Contains helm files used to deploy Krok on Kubernetes. More about that under <a href="/kubernetes">kubernetes</a>.</p>
-<h3 id="swagger">/swagger</h3>
-<p>Contains swagger details such as, the swagger.json and the generated swagger.md file.</p>
-<h3 id="tests">/tests</h3>
-<p>Contains integration tests.</p>
-<h3 id="github">/.github</h3>
-<p>Contains Github Actions definitions responsible for releasing, testing and building Krok.</p>
-<h3 id="pkgproviders">/pkg/providers</h3>
-<p>Krok has an architecture using something called <code>providers</code>. The providers provide a specific functionality
-for a certain Interface. For example, there is an interface for Platforms, and the concrete implementations are
-Github, Gitlab, Gitea, etc. These providers are then dependencies for other providers.</p>
-<p>Consider the following:</p>
-<p>There is a provider for database access called Connector. The Connector is used by the RepositoryStorer provider
-which implement repository based database operation. I.e.: CRUD operations. And others like, the CommandStorer,
-UserStorer, etc.</p>
-<p>There is also another called DockerConverter which providers implementation for detecting if we are in a Docker environment.
-This is necessary, because in a Docker environment, secrets like, database password, database username, are passed via
-files, like:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">const</span> (
-	<span style="color:#a6e22e">dockerSecretPrefix</span> = <span style="color:#e6db74">&#34;/run/secrets&#34;</span>
-)
-</code></pre></div><p>And so the DockerConverter detects this and converts secrets to files. If it&rsquo;s not running there, it returns the
-value as is, which is the case when running locally or in Kubernetes.</p>
-<p>These are the providers which are wired up in <code>root.go</code>. The reason for them is that they de-couple other providers
-from services they don&rsquo;t care about so they can be easily unit tested with mocked out dependencies which they don&rsquo;t care about.</p>
-<p>Root go them wires up concrete implementations like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	<span style="color:#a6e22e">converter</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">environment</span>.<span style="color:#a6e22e">NewDockerConverter</span>(<span style="color:#a6e22e">environment</span>.<span style="color:#a6e22e">Dependencies</span>{
-		<span style="color:#a6e22e">Logger</span>: <span style="color:#a6e22e">log</span>,
-	})
-    <span style="color:#f92672">...</span>
-    <span style="color:#a6e22e">connector</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">livestore</span>.<span style="color:#a6e22e">NewDatabaseConnector</span>(<span style="color:#a6e22e">krokArgs</span>.<span style="color:#a6e22e">store</span>, <span style="color:#a6e22e">livestore</span>.<span style="color:#a6e22e">Dependencies</span>{
-		<span style="color:#a6e22e">Logger</span>:    <span style="color:#a6e22e">log</span>,
-		<span style="color:#a6e22e">Converter</span>: <span style="color:#a6e22e">converter</span>,
-	})
-    <span style="color:#f92672">...</span>
-   	<span style="color:#a6e22e">commandStore</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">livestore</span>.<span style="color:#a6e22e">NewCommandStore</span>(<span style="color:#a6e22e">livestore</span>.<span style="color:#a6e22e">CommandDependencies</span>{
-		<span style="color:#a6e22e">Dependencies</span>: <span style="color:#a6e22e">deps</span>,
-		<span style="color:#a6e22e">Connector</span>:    <span style="color:#a6e22e">connector</span>,
-	})
-    <span style="color:#f92672">...</span>
-    <span style="color:#75715e">// Then a handler provider is created which actually implement echo handling functions:
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">commandHandler</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">handlers</span>.<span style="color:#a6e22e">NewCommandsHandler</span>(<span style="color:#a6e22e">handlers</span>.<span style="color:#a6e22e">CommandsHandlerDependencies</span>{
-		<span style="color:#a6e22e">CommandStorer</span>: <span style="color:#a6e22e">commandStore</span>,
-		<span style="color:#a6e22e">Logger</span>:        <span style="color:#a6e22e">log</span>,
-		<span style="color:#a6e22e">Plugins</span>:       <span style="color:#a6e22e">pw</span>,
-	})
-    <span style="color:#75715e">// And at the end, the Krok server gets all the handlers..
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">sv</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">NewKrokServer</span>(<span style="color:#a6e22e">krokArgs</span>.<span style="color:#a6e22e">server</span>, <span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">Dependencies</span>{
-		<span style="color:#a6e22e">Logger</span>:                 <span style="color:#a6e22e">log</span>,
-		<span style="color:#a6e22e">HookHandler</span>:            <span style="color:#a6e22e">hookHandler</span>,
-		<span style="color:#a6e22e">UserMiddleware</span>:         <span style="color:#a6e22e">userMiddleware</span>,
-		<span style="color:#a6e22e">CommandHandler</span>:         <span style="color:#a6e22e">commandHandler</span>,
-		<span style="color:#a6e22e">CommandSettingsHandler</span>: <span style="color:#a6e22e">commandSettingsHandler</span>,
-		<span style="color:#a6e22e">CommandRunHandler</span>:      <span style="color:#a6e22e">commandRunHandler</span>,
-		<span style="color:#a6e22e">RepositoryHandler</span>:      <span style="color:#a6e22e">repoHandler</span>,
-		<span style="color:#a6e22e">APIKeyHandler</span>:          <span style="color:#a6e22e">apiKeysHandler</span>,
-		<span style="color:#a6e22e">AuthHandler</span>:            <span style="color:#a6e22e">authHandler</span>,
-		<span style="color:#a6e22e">TokenHandler</span>:           <span style="color:#a6e22e">tp</span>,
-		<span style="color:#a6e22e">VCSTokenHandler</span>:        <span style="color:#a6e22e">vcsTokenHandler</span>,
-		<span style="color:#a6e22e">SupportedPlatformList</span>:  <span style="color:#a6e22e">supportedPlatformListHandler</span>,
-		<span style="color:#a6e22e">EventsHandler</span>:          <span style="color:#a6e22e">eventHandler</span>,
-		<span style="color:#a6e22e">VaultHandler</span>:           <span style="color:#a6e22e">vaultHandler</span>,
-		<span style="color:#a6e22e">UserHandler</span>:            <span style="color:#a6e22e">userHandler</span>,
-		<span style="color:#a6e22e">ReadyHandler</span>:           <span style="color:#a6e22e">readyHandler</span>,
-	})
-
-    <span style="color:#75715e">// and is then executed...
-</span><span style="color:#75715e"></span>	<span style="color:#75715e">// Run service &amp; server
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">g</span>, <span style="color:#a6e22e">ctx</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">errgroup</span>.<span style="color:#a6e22e">WithContext</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>())
-
-	<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Go</span>(<span style="color:#66d9ef">func</span>() <span style="color:#66d9ef">error</span> {
-		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">sv</span>.<span style="color:#a6e22e">Run</span>(<span style="color:#a6e22e">ctx</span>)
-	})
-
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Wait</span>(); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Err</span>(<span style="color:#a6e22e">err</span>).<span style="color:#a6e22e">Msg</span>(<span style="color:#e6db74">&#34;Failed to run&#34;</span>)
-	}
-</code></pre></div><p>That&rsquo;s it.</p>
-<h3 id="pkgserver">/pkg/server</h3>
-<p>This contains the Krok server code; middleware and the Krok server definition. Krok uses <a href="https://echo.labstack.com/">echo</a>.
-It also contains the endpoint definitions for everything and uses Groups to define what requires admin access and what not.
-Things like the URL callbacks don&rsquo;t use authentication. That is up to the hook it self to be secure through other means; such as
-a secret in case of Github.</p>
-<p>Krok uses plain HTTP REST endpoint ATM. Though later that will change to GRPC using <a href="https://github.com/grpc-ecosystem/grpc-gateway">grpc-gateway</a>.</p>
-<h3 id="pkgmodels">/pkg/models</h3>
-<p>This package contains all the models which Krok uses internally and to generate JSON payloads for responses.</p>
-<h2 id="tests-1">Tests</h2>
-<p>We don&rsquo;t accept code changes unless they are covered via tests. The providers themselves use mockery for dependencies and
-should be able to test all sorts of things.</p>
-<p>The handlers are just providers and the test should reflect what the end user will experience when calling them.</p>
-<h2 id="makefile">Makefile</h2>
-<p>The Makefile contains all sorts of helper targets as well, such as <code>bootstrap</code>, <code>generate_mocks</code> and others.</p>
-<h2 id="swagger-1">Swagger</h2>
-<p>Swagger is used to annotate all API endpoints. At the time of this writing it&rsquo;s missing auth information and a couple of
-other nice details, but it&rsquo;s under development. Any API change requires an update to api_reference and the swagger data.</p>
-<p>To update run:</p>
-<pre><code>make swagger &amp;&amp; make swagger-docs
-</code></pre><h2 id="releases-and-docker-container">Releases and Docker Container</h2>
-<p>To run a release, create a new doc under <code>docs/release_notes</code> with a new tag like v0.1.15.md and enter proper information
-like, issues closed, pull requests merged, etc. ( later this will be somewhat automated with release drafter ).</p>
-<p>Then tag the release with <code>git tag -a v0.1.15 -m ''</code> and push it to main <code>git push origin v0.1.15</code> and this will
-trigger goreleaser to create a release. If everything is successful a new release should exist under releases in Github
-and a new docker image should have been pushed to <a href="https://hub.docker.com/r/krokhook/krok">Docker Hub</a>.</p>
+	<h3 id="chapter-3">Chapter 3</h3>
+<h1 id="concepts">Concepts</h1>
+<p>The following concepts need to be understood when working with Krok&hellip;</p>
 
 
 
@@ -823,6 +646,8 @@ and a new docker image should have been pushed to <a href="https://hub.docker.co
 	
 </footer>
 
+        
+            </div> 
         
         </div>
         
@@ -854,41 +679,8 @@ and a new docker image should have been pushed to <a href="https://hub.docker.co
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
                         
                         
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
                     
                 
                 
@@ -904,9 +696,6 @@ and a new docker image should have been pushed to <a href="https://hub.docker.co
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -929,6 +718,21 @@ and a new docker image should have been pushed to <a href="https://hub.docker.co
 
                     
                     
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
                     
 
                     
@@ -940,7 +744,6 @@ and a new docker image should have been pushed to <a href="https://hub.docker.co
             
                 
                     
-                    
                 
                 
 
@@ -952,16 +755,10 @@ and a new docker image should have been pushed to <a href="https://hub.docker.co
             
         
                     
-            
-        
-                    
                         
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -987,6 +784,26 @@ and a new docker image should have been pushed to <a href="https://hub.docker.co
 
                     
                     
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
                         
                     
                     
@@ -996,6 +813,9 @@ and a new docker image should have been pushed to <a href="https://hub.docker.co
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1100,10 +920,10 @@ and a new docker image should have been pushed to <a href="https://hub.docker.co
 	 
 	 
 		
-			<a class="nav nav-prev" href="/basics/installation/docker/" title="Docker"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/basics/configuration/" title="Configuration"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/basics/configuration/" title="Configuration" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/concepts/repositories/" title="Repositories" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
