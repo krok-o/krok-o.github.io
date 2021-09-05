@@ -12,20 +12,20 @@
     <title>Commands :: Documentation for Krok</title>
 
     
-    <link href="/css/nucleus.css?1630864127" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1630864127" rel="stylesheet">
-    <link href="/css/hybrid.css?1630864127" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1630864127" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1630864127" rel="stylesheet">
-    <link href="/css/auto-complete.css?1630864127" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1630864127" rel="stylesheet">
-    <link href="/css/theme.css?1630864127" rel="stylesheet">
-    <link href="/css/tabs.css?1630864127" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1630864127" rel="stylesheet">
+    <link href="/css/nucleus.css?1630869444" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1630869444" rel="stylesheet">
+    <link href="/css/hybrid.css?1630869444" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1630869444" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1630869444" rel="stylesheet">
+    <link href="/css/auto-complete.css?1630869444" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1630869444" rel="stylesheet">
+    <link href="/css/theme.css?1630869444" rel="stylesheet">
+    <link href="/css/tabs.css?1630869444" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1630869444" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1630864127"></script>
+    <script src="/js/jquery-3.3.1.min.js?1630869444"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -90,14 +90,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1630864127"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1630864127"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1630869444"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1630869444"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/krok.app";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1630864127"></script>
+<script type="text/javascript" src="/js/search.js?1630869444"></script>
 
     
   </div>
@@ -628,7 +628,13 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#structure">Structure</a></li>
+    <li><a href="#creating">Creating</a></li>
+    <li><a href="#settings">Settings</a></li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -652,7 +658,45 @@
 
 
 
-	<p>What are commands? Commands are at the heart of the Krok.</p>
+	<p>What are commands? Commands are at the heart of the Krok. Without commands, Krok doesn&rsquo;t do much.</p>
+<p>Commands can be bots which do things on PRs, or comment on issues or run on a set schedule. They can be things like
+a blog builder which pushes the content up to a repository, a slack notification which acts on events,
+a bot which reacts to pull requests, cleanup jobs, artifact generators and pusher&hellip; etc.</p>
+<p>Let&rsquo;s look at how they work, what requirements they have and how to create one.</p>
+<h2 id="structure">Structure</h2>
+<p>Commands are contained in containers. A container has everything that a command needs. They can be written in whatever
+language you choose as long as the following requirements are met:</p>
+<p>There are three command line options which a command must accept in the following format:</p>
+<pre><code>--platform github
+--event-type push
+--payload &lt;bas64 encoded JSON payload&gt;
+</code></pre><p>What are these settings? The platform is the platform from which the event came from. <code>github</code>, <code>gitlab</code>, <code>gitea</code>, <code>bitbucket</code> etc.
+The event-type defines the type of the event. This will be a platform specific string. Which means it&rsquo;s something like <code>push</code> for Github
+and <code>Push Hook</code> for gitlab, and so on. The payload is a base64 encoded string of the whole payload that was attached to this event.</p>
+<p>The payload is passed on to the commands so the command can then further analyse it and act on it. Like, getting the comment for an <code>issue_comment</code>
+event, or getting the SSH url and cloning the repository to build and push an image somewhere. Or deploy to an existing environment.</p>
+<h2 id="creating">Creating</h2>
+<p>To create a command, run:</p>
+<pre><code>krokctl create command --name test --image krokhook/integration-test-command:v0.0.1
+ID      NAME            SCHEDULE        IMAGE                                           ENABLED REPOSITORIES    PLATFORMS
+1       test            -               krokhook/integration-test-command:v0.0.1        true    -               -
+
+</code></pre><p>Once created, we need to define what platforms this command supports. Commands can be made available for all platforms or just a few or
+a single one. This means that when there is an event coming from Github it will only run commands which support this platform.</p>
+<p>To associate this command with a platform, a relationship must be added to the platform much like for repositories.</p>
+<p>The following command</p>
+<pre><code>krokctl relationship platform add --command-id 1 --platform-id 1
+Success!
+</code></pre><p>&hellip; adds support for platform 1 (github) to the command-id <code>1</code> which is the test command created above. Now this command will be run
+on Github related events.</p>
+<h2 id="settings">Settings</h2>
+<p>Commands can have settings which are passed in as <code>--%s=%s</code> where the first <code>%s</code> is the key and the second <code>%s</code> is the value.</p>
+<p>To create settings for a command run:</p>
+<pre><code>krokctl create setting --command-id 1 --in-vault --key token --value xoxb-1234-1234-ccc
+</code></pre><p>What&rsquo;s <code>in-vault</code> you might ask? Good question. If <code>--in-vault</code> is set, the setting will be stored securely in an AES encrypted
+vault. Later, more options will be made available. Right now, the vault is seeded at startup and then AES encrypted using Go&rsquo;s
+well written encryption library. No self backed encryption is used. Once stored in vault, it cannot be moved to non-vault. If need
+arises to recreate or edit, the previous value is lost.</p>
 
 
 
@@ -951,19 +995,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1630864127"></script>
-    <script src="/js/perfect-scrollbar.min.js?1630864127"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1630864127"></script>
-    <script src="/js/jquery.sticky.js?1630864127"></script>
-    <script src="/js/featherlight.min.js?1630864127"></script>
-    <script src="/js/highlight.pack.js?1630864127"></script>
+    <script src="/js/clipboard.min.js?1630869444"></script>
+    <script src="/js/perfect-scrollbar.min.js?1630869444"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1630869444"></script>
+    <script src="/js/jquery.sticky.js?1630869444"></script>
+    <script src="/js/featherlight.min.js?1630869444"></script>
+    <script src="/js/highlight.pack.js?1630869444"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1630864127"></script>
-    <script src="/js/learn.js?1630864127"></script>
-    <script src="/js/hugo-learn.js?1630864127"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1630869444"></script>
+    <script src="/js/learn.js?1630869444"></script>
+    <script src="/js/hugo-learn.js?1630869444"></script>
     
         
-            <script src="/mermaid/mermaid.js?1630864127"></script>
+            <script src="/mermaid/mermaid.js?1630869444"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });
