@@ -12,20 +12,20 @@
     <title>Tutorials :: Documentation for Krok</title>
 
     
-    <link href="/css/nucleus.css?1630869444" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1630869444" rel="stylesheet">
-    <link href="/css/hybrid.css?1630869444" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1630869444" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1630869444" rel="stylesheet">
-    <link href="/css/auto-complete.css?1630869444" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1630869444" rel="stylesheet">
-    <link href="/css/theme.css?1630869444" rel="stylesheet">
-    <link href="/css/tabs.css?1630869444" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1630869444" rel="stylesheet">
+    <link href="/css/nucleus.css?1630950322" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1630950322" rel="stylesheet">
+    <link href="/css/hybrid.css?1630950322" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1630950322" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1630950322" rel="stylesheet">
+    <link href="/css/auto-complete.css?1630950322" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1630950322" rel="stylesheet">
+    <link href="/css/theme.css?1630950322" rel="stylesheet">
+    <link href="/css/tabs.css?1630950322" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1630950322" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1630869444"></script>
+    <script src="/js/jquery-3.3.1.min.js?1630950322"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -90,14 +90,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1630869444"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1630869444"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1630950322"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1630950322"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/krok.app";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1630869444"></script>
+<script type="text/javascript" src="/js/search.js?1630950322"></script>
 
     
   </div>
@@ -637,8 +637,71 @@
 	<h3 id="chapter-4">Chapter 4</h3>
 <h1 id="tutorials">Tutorials</h1>
 <p>Discover some usages and tutorials with Krok.</p>
-<h2 id="adding-slack-notification-to-all-repositories">Adding Slack notification to all repositories</h2>
+<h2 id="terraform">Terraform</h2>
+<p>I&rsquo;m going to show a Terraform file which will create the following setup:</p>
+<ul>
+<li>repository on github subscribed to events <code>push</code> and <code>issue_comment</code></li>
+<li>command with two settings, <code>token</code> -&gt; in vault, <code>message</code> -&gt; regular setting</li>
+<li>adding relationships from command -&gt; platform and command -&gt; repository</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-terraform" data-lang="terraform"><span style="color:#75715e">/*
+</span><span style="color:#75715e"> * Create the krok provider.
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">provider</span> <span style="color:#e6db74">&#34;krok&#34;</span> {
+}
 
+<span style="color:#75715e">/*
+</span><span style="color:#75715e"> * Create github platform token.
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;krok_platform&#34;</span> <span style="color:#e6db74">&#34;github&#34;</span> {
+  <span style="color:#a6e22e">platform_id</span> = <span style="color:#ae81ff">1</span>
+  <span style="color:#a6e22e">token</span> = <span style="color:#e6db74">&#34;token&#34;</span>
+}
+
+<span style="color:#75715e">/*
+</span><span style="color:#75715e"> * Create a repository.
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;krok_repository&#34;</span> <span style="color:#e6db74">&#34;skarlso_test&#34;</span> {
+  <span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;skarlso-test&#34;</span>
+  <span style="color:#a6e22e">url</span> = <span style="color:#e6db74">&#34;https://github.com/Skarlso/test&#34;</span>
+  <span style="color:#a6e22e">vcs</span> = <span style="color:#ae81ff">1</span>
+  <span style="color:#a6e22e">auth</span> {
+    <span style="color:#a6e22e">secret</span> = <span style="color:#e6db74">&#34;secret&#34;</span>
+  }
+  <span style="color:#a6e22e">commands</span> = [<span style="color:#a6e22e">krok_command</span>.<span style="color:#a6e22e">issue_commenter</span>.<span style="color:#a6e22e">id</span>]
+  <span style="color:#a6e22e">events</span> = [<span style="color:#e6db74">&#34;push&#34;</span>, <span style="color:#e6db74">&#34;issue_comment&#34;</span>]
+}
+
+<span style="color:#75715e">/*
+</span><span style="color:#75715e"> * Create a setting for this command.
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;krok_command_setting&#34;</span> <span style="color:#e6db74">&#34;token&#34;</span> {
+  <span style="color:#a6e22e">key</span> = <span style="color:#e6db74">&#34;token&#34;</span>
+  <span style="color:#a6e22e">value</span> = <span style="color:#e6db74">&#34;&lt;GITHUB_TOKEN&gt;&#34;</span>
+  <span style="color:#a6e22e">in_vault</span> = <span style="color:#66d9ef">true</span>
+  <span style="color:#a6e22e">command_id</span> = <span style="color:#a6e22e">krok_command</span>.<span style="color:#a6e22e">issue_commenter</span>.<span style="color:#a6e22e">id</span>
+}
+
+<span style="color:#75715e">/*
+</span><span style="color:#75715e"> * Create a setting for this command.
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;krok_command_setting&#34;</span> <span style="color:#e6db74">&#34;message&#34;</span> {
+  <span style="color:#a6e22e">key</span> = <span style="color:#e6db74">&#34;message&#34;</span>
+  <span style="color:#a6e22e">value</span> = <span style="color:#e6db74">&#34;This is my regular bot response message.&#34;</span>
+  <span style="color:#a6e22e">in_vault</span> = <span style="color:#66d9ef">false</span>
+  <span style="color:#a6e22e">command_id</span> = <span style="color:#a6e22e">krok_command</span>.<span style="color:#a6e22e">issue_commenter</span>.<span style="color:#a6e22e">id</span>
+}
+
+<span style="color:#75715e">/*
+</span><span style="color:#75715e"> * Create an Issue commenter command.
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;krok_command&#34;</span> <span style="color:#e6db74">&#34;issue_commenter&#34;</span> {
+  <span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;issue-commenter&#34;</span>
+  <span style="color:#a6e22e">image</span> = <span style="color:#e6db74">&#34;krokhook/issue-commenter-command:v0.0.1&#34;</span>
+  <span style="color:#a6e22e">platforms</span> = [<span style="color:#ae81ff">1</span>]
+}
+
+</code></pre></div>
 
 
 
@@ -934,19 +997,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1630869444"></script>
-    <script src="/js/perfect-scrollbar.min.js?1630869444"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1630869444"></script>
-    <script src="/js/jquery.sticky.js?1630869444"></script>
-    <script src="/js/featherlight.min.js?1630869444"></script>
-    <script src="/js/highlight.pack.js?1630869444"></script>
+    <script src="/js/clipboard.min.js?1630950322"></script>
+    <script src="/js/perfect-scrollbar.min.js?1630950322"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1630950322"></script>
+    <script src="/js/jquery.sticky.js?1630950322"></script>
+    <script src="/js/featherlight.min.js?1630950322"></script>
+    <script src="/js/highlight.pack.js?1630950322"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1630869444"></script>
-    <script src="/js/learn.js?1630869444"></script>
-    <script src="/js/hugo-learn.js?1630869444"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1630950322"></script>
+    <script src="/js/learn.js?1630950322"></script>
+    <script src="/js/hugo-learn.js?1630950322"></script>
     
         
-            <script src="/mermaid/mermaid.js?1630869444"></script>
+            <script src="/mermaid/mermaid.js?1630950322"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });
