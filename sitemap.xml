@@ -2,6 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://krok.app/api_reference/</loc>
+  </url><url>
     <loc>https://krok.app/basics/</loc>
   </url><url>
     <loc>https://krok.app/concepts/</loc>
@@ -27,9 +29,6 @@
     <loc>https://krok.app/concepts/events/</loc>
   </url><url>
     <loc>https://krok.app/basics/installation/dev/</loc>
-  </url><url>
-    <loc>https://krok.app/api_reference/</loc>
-    <priority>0</priority>
   </url><url>
     <loc>https://krok.app/categories/</loc>
   </url><url>

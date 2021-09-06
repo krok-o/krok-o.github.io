@@ -9,23 +9,23 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title> :: Documentation for Krok</title>
+    <title>API reference :: Documentation for Krok</title>
 
     
-    <link href="/css/nucleus.css?1630950322" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1630950322" rel="stylesheet">
-    <link href="/css/hybrid.css?1630950322" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1630950322" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1630950322" rel="stylesheet">
-    <link href="/css/auto-complete.css?1630950322" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1630950322" rel="stylesheet">
-    <link href="/css/theme.css?1630950322" rel="stylesheet">
-    <link href="/css/tabs.css?1630950322" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1630950322" rel="stylesheet">
+    <link href="/css/nucleus.css?1630954701" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1630954701" rel="stylesheet">
+    <link href="/css/hybrid.css?1630954701" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1630954701" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1630954701" rel="stylesheet">
+    <link href="/css/auto-complete.css?1630954701" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1630954701" rel="stylesheet">
+    <link href="/css/theme.css?1630954701" rel="stylesheet">
+    <link href="/css/tabs.css?1630954701" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1630954701" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1630950322"></script>
+    <script src="/js/jquery-3.3.1.min.js?1630954701"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -90,14 +90,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1630950322"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1630950322"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1630954701"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1630954701"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/krok.app";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1630950322"></script>
+<script type="text/javascript" src="/js/search.js?1630954701"></script>
 
     
   </div>
@@ -107,6 +107,32 @@
     <ul class="topics">
 
         
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/api_reference/" title="API reference" class="dd-item
+        parent
+        active
+        
+        ">
+      <a href="/api_reference/">
+          <b>1. </b>API reference
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
           
           
 
@@ -502,32 +528,6 @@
  
 
           
-          
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/api_reference/" title="" class="dd-item
-        parent
-        active
-        
-        ">
-      <a href="/api_reference/">
-          
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-      
-    </li>
-  
- 
-
-          
         
     </ul>
 
@@ -599,8 +599,6 @@
                         </a>
                     </span>
                   
-                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
-                  
                   <span class="links">
                  
                  
@@ -611,7 +609,7 @@
             
           
           
-            <a href='/'>Krok Documentation</a> > 
+            <a href='/'>Krok Documentation</a> > API reference
           
         
           
@@ -620,98 +618,6 @@
                   </span>
                 </div>
                 
-                    <div class="progress">
-    <div class="wrapper">
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#information">Information</a>
-      <ul>
-        <li><a href="#version">Version</a></li>
-        <li><a href="#license">License</a></li>
-      </ul>
-    </li>
-    <li><a href="#content-negotiation">Content negotiation</a>
-      <ul>
-        <li><a href="#uri-schemes">URI Schemes</a></li>
-        <li><a href="#consumes">Consumes</a></li>
-        <li><a href="#produces">Produces</a></li>
-      </ul>
-    </li>
-    <li><a href="#all-endpoints">All endpoints</a>
-      <ul>
-        <li><a href="#operations">operations</a></li>
-      </ul>
-    </li>
-    <li><a href="#paths">Paths</a>
-      <ul>
-        <li><a href="#adds-a-connection-to-a-platform-for-a-command-defines-what-platform-a-command-supports-these-commands-will-only-be-able-to-run-for-those-platforms-addcommandrelforplatformcommand">Adds a connection to a platform for a command. Defines what platform a command supports. These commands will only be able to run for those platforms. (<em>addCommandRelForPlatformCommand</em>)</a></li>
-        <li><a href="#add-a-connection-to-a-repository-this-will-make-this-command-to-be-executed-for-events-for-that-repository-addcommandrelforrepositorycommand">Add a connection to a repository. This will make this command to be executed for events for that repository. (<em>addCommandRelForRepositoryCommand</em>)</a></li>
-        <li><a href="#creates-an-api-key-pair-for-a-given-user-createapikey">Creates an api key pair for a given user. (<em>createApiKey</em>)</a></li>
-        <li><a href="#create-command-createcommand">create command (<em>createCommand</em>)</a></li>
-        <li><a href="#create-repository-createrepository">create repository (<em>createRepository</em>)</a></li>
-        <li><a href="#create-a-new-secure-secret-createsecret">Create a new secure secret. (<em>createSecret</em>)</a></li>
-        <li><a href="#create-user-createuser">create user (<em>createUser</em>)</a></li>
-        <li><a href="#create-a-new-token-for-a-platform-like-github-gitlab-gitea-createvcstoken">Create a new token for a platform like Github, Gitlab, Gitea&hellip; (<em>createVcsToken</em>)</a></li>
-        <li><a href="#deletes-a-set-of-api-keys-for-a-given-user-with-a-given-id-deleteapikey">Deletes a set of api keys for a given user with a given id. (<em>deleteApiKey</em>)</a></li>
-        <li><a href="#deletes-given-command-deletecommand">Deletes given command. (<em>deleteCommand</em>)</a></li>
-        <li><a href="#deletes-a-given-command-setting-deletecommandsetting">Deletes a given command setting. (<em>deleteCommandSetting</em>)</a></li>
-        <li><a href="#deletes-the-given-repository-deleterepository">Deletes the given repository. (<em>deleteRepository</em>)</a></li>
-        <li><a href="#deletes-the-given-secret-deletesecret">Deletes the given secret. (<em>deleteSecret</em>)</a></li>
-        <li><a href="#deletes-the-given-user-deleteuser">Deletes the given user. (<em>deleteUser</em>)</a></li>
-        <li><a href="#returns-a-given-api-key-getapikeys">Returns a given api key. (<em>getApiKeys</em>)</a></li>
-        <li><a href="#returns-a-specific-command-getcommand">Returns a specific command. (<em>getCommand</em>)</a></li>
-        <li><a href="#returns-details-about-a-command-run-getcommandrun">Returns details about a command run. (<em>getCommandRun</em>)</a></li>
-        <li><a href="#get-a-specific-setting-getcommandsetting">Get a specific setting. (<em>getCommandSetting</em>)</a></li>
-        <li><a href="#get-a-specific-event-getevent">Get a specific event. (<em>getEvent</em>)</a></li>
-        <li><a href="#gets-the-repository-with-the-corresponding-id-getrepository">Gets the repository with the corresponding ID. (<em>getRepository</em>)</a></li>
-        <li><a href="#get-a-specific-secret-getsecret">Get a specific secret. (<em>getSecret</em>)</a></li>
-        <li><a href="#creates-a-jwt-token-for-a-given-api-key-pair-gettoken">Creates a JWT token for a given api key pair. (<em>getToken</em>)</a></li>
-        <li><a href="#gets-the-user-with-the-corresponding-id-getuser">Gets the user with the corresponding ID. (<em>getUser</em>)</a></li>
-        <li><a href="#handle-the-hooks-created-by-the-platform-hookhandler">Handle the hooks created by the platform. (<em>hookHandler</em>)</a></li>
-        <li><a href="#lists-all-api-keys-for-a-given-user-listapikeys">Lists all api keys for a given user. (<em>listApiKeys</em>)</a></li>
-        <li><a href="#list-settings-for-a-command-listcommandsettings">List settings for a command. (<em>listCommandSettings</em>)</a></li>
-        <li><a href="#list-commands-listcommands">list commands (<em>listCommands</em>)</a></li>
-        <li><a href="#list-events-for-a-repository-listevents">List events for a repository. (<em>listEvents</em>)</a></li>
-        <li><a href="#list-repositories-listrepositories">list repositories (<em>listRepositories</em>)</a></li>
-        <li><a href="#list-all-settings-without-the-values-listsecrets">List all settings without the values. (<em>listSecrets</em>)</a></li>
-        <li><a href="#lists-all-supported-platforms-listsupportedplatforms">Lists all supported platforms. (<em>listSupportedPlatforms</em>)</a></li>
-        <li><a href="#list-users-listusers">list users (<em>listUsers</em>)</a></li>
-        <li><a href="#refresh-the-authentication-token-refreshtoken">Refresh the authentication token. (<em>refreshToken</em>)</a></li>
-        <li><a href="#remove-a-relationship-to-a-platform-this-command-will-no-longer-be-running-for-that-platform-events-removecommandrelforplatformcommand">Remove a relationship to a platform. This command will no longer be running for that platform events. (<em>removeCommandRelForPlatformCommand</em>)</a></li>
-        <li><a href="#remove-a-relationship-to-a-repository-this-command-will-no-longer-be-running-for-that-repository-events-removecommandrelforrepositorycommand">Remove a relationship to a repository. This command will no longer be running for that repository events. (<em>removeCommandRelForRepositoryCommand</em>)</a></li>
-        <li><a href="#updates-a-given-command-updatecommand">Updates a given command. (<em>updateCommand</em>)</a></li>
-        <li><a href="#create-a-new-command-setting-updatecommandsetting">Create a new command setting. (<em>updateCommandSetting</em>)</a></li>
-        <li><a href="#updates-an-existing-repository-updaterepository">Updates an existing repository. (<em>updateRepository</em>)</a></li>
-        <li><a href="#updates-an-existing-secret-updatesecret">Updates an existing secret. (<em>updateSecret</em>)</a></li>
-        <li><a href="#updates-an-existing-user-updateuser">Updates an existing user. (<em>updateUser</em>)</a></li>
-        <li><a href="#this-is-the-url-to-which-google-calls-back-after-a-successful-login-usercallback">This is the url to which Google calls back after a successful login. (<em>userCallback</em>)</a></li>
-        <li><a href="#user-login-userlogin">User login. (<em>userLogin</em>)</a></li>
-      </ul>
-    </li>
-    <li><a href="#models">Models</a>
-      <ul>
-        <li><a href="#apikey">APIKey</a></li>
-        <li><a href="#auth">Auth</a></li>
-        <li><a href="#command">Command</a></li>
-        <li><a href="#commandrun">CommandRun</a></li>
-        <li><a href="#commandsetting">CommandSetting</a></li>
-        <li><a href="#event">Event</a></li>
-        <li><a href="#gitlab">GitLab</a></li>
-        <li><a href="#listoptions">ListOptions</a></li>
-        <li><a href="#platform">Platform</a></li>
-        <li><a href="#repository">Repository</a></li>
-        <li><a href="#user">User</a></li>
-        <li><a href="#userauthdetails">UserAuthDetails</a></li>
-        <li><a href="#vcstoken">VCSToken</a></li>
-        <li><a href="#vaultsetting">VaultSetting</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-    </div>
-</div>
-
-                
               </div>
             </div>
             
@@ -719,19 +625,18 @@
         
         </div>
         
+          <div id="chapter">
+        
         <div id="body-inner">
-          
-            <h1>
-              
-              
-            </h1>
           
 
         
 
 
 
-	<h1 id="krok">Krok</h1>
+	<h3 id="chapter-1">Chapter 1</h3>
+<p>Being here to understand what Krok is and how to use it.</p>
+<h1 id="krok">Krok</h1>
 <p>Documentation of the Krok API.</p>
 <h2 id="information">Information</h2>
 <h3 id="version">Version</h3>
@@ -5196,6 +5101,8 @@ the repository it belongs to and the event that created it&hellip;</p>
 </footer>
 
         
+            </div> 
+        
         </div>
         
 
@@ -5226,6 +5133,23 @@ the repository it belongs to and the event that created it&hellip;</p>
             
                 
                     
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
                         
                         
                     
@@ -5426,23 +5350,6 @@ the repository it belongs to and the event that created it&hellip;</p>
             
             
                 
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
                     
                 
                 
@@ -5464,7 +5371,7 @@ the repository it belongs to and the event that created it&hellip;</p>
 	 
 	 
 		
-			<a class="nav nav-prev" href="/tutorial/" title="Tutorials"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/" title="Krok Documentation"> <i class="fa fa-chevron-left"></i></a>
 		
 		
 			<a class="nav nav-next" href="/basics/" title="Basics" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
@@ -5477,19 +5384,19 @@ the repository it belongs to and the event that created it&hellip;</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1630950322"></script>
-    <script src="/js/perfect-scrollbar.min.js?1630950322"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1630950322"></script>
-    <script src="/js/jquery.sticky.js?1630950322"></script>
-    <script src="/js/featherlight.min.js?1630950322"></script>
-    <script src="/js/highlight.pack.js?1630950322"></script>
+    <script src="/js/clipboard.min.js?1630954701"></script>
+    <script src="/js/perfect-scrollbar.min.js?1630954701"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1630954701"></script>
+    <script src="/js/jquery.sticky.js?1630954701"></script>
+    <script src="/js/featherlight.min.js?1630954701"></script>
+    <script src="/js/highlight.pack.js?1630954701"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1630950322"></script>
-    <script src="/js/learn.js?1630950322"></script>
-    <script src="/js/hugo-learn.js?1630950322"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1630954701"></script>
+    <script src="/js/learn.js?1630954701"></script>
+    <script src="/js/hugo-learn.js?1630954701"></script>
     
         
-            <script src="/mermaid/mermaid.js?1630950322"></script>
+            <script src="/mermaid/mermaid.js?1630954701"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });

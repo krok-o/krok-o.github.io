@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Documentation for Krok</title>
+    <title>API reference on Documentation for Krok</title>
     <link>https://krok.app/api_reference/</link>
-    <description>Recent content on Documentation for Krok</description>
+    <description>Recent content in API reference on Documentation for Krok</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language><atom:link href="https://krok.app/api_reference/index.xml" rel="self" type="application/rss+xml" />
   </channel>
