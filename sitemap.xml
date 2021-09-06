@@ -6,29 +6,29 @@
   </url><url>
     <loc>https://krok.app/basics/</loc>
   </url><url>
-    <loc>https://krok.app/concepts/</loc>
-  </url><url>
-    <loc>https://krok.app/tutorial/</loc>
-  </url><url>
     <loc>https://krok.app/concepts/repositories/</loc>
-  </url><url>
-    <loc>https://krok.app/basics/requirements/</loc>
   </url><url>
     <loc>https://krok.app/concepts/commands/</loc>
   </url><url>
-    <loc>https://krok.app/basics/installation/</loc>
-  </url><url>
     <loc>https://krok.app/basics/configuration/</loc>
   </url><url>
-    <loc>https://krok.app/basics/installation/kubernetes/</loc>
+    <loc>https://krok.app/basics/installation/</loc>
   </url><url>
     <loc>https://krok.app/concepts/providers/</loc>
   </url><url>
-    <loc>https://krok.app/basics/installation/docker/</loc>
+    <loc>https://krok.app/basics/installation/dev/</loc>
   </url><url>
     <loc>https://krok.app/concepts/events/</loc>
   </url><url>
-    <loc>https://krok.app/basics/installation/dev/</loc>
+    <loc>https://krok.app/basics/installation/docker/</loc>
+  </url><url>
+    <loc>https://krok.app/basics/installation/kubernetes/</loc>
+  </url><url>
+    <loc>https://krok.app/basics/requirements/</loc>
+  </url><url>
+    <loc>https://krok.app/concepts/</loc>
+  </url><url>
+    <loc>https://krok.app/tutorial/</loc>
   </url><url>
     <loc>https://krok.app/categories/</loc>
   </url><url>
