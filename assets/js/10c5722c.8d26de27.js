@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[110],{1277:c=>{c.exports=JSON.parse('{"title":"Basic Concepts","description":"Basic concepts of Krok and its architecture.","slug":"/category/basic-concepts","permalink":"/docs/category/basic-concepts","navigation":{"next":{"title":"Basic Concepts","permalink":"/docs/basic-concepts/basics"}}}')}}]);
