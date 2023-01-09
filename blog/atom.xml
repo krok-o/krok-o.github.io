@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://krok-o.github.io/blog</id>
+    <id>https://krok.tools/blog</id>
     <title>Krok App Blog</title>
     <updated>2022-11-27T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://krok-o.github.io/blog"/>
+    <link rel="alternate" href="https://krok.tools/blog"/>
     <subtitle>Krok App Blog</subtitle>
-    <icon>https://krok-o.github.io/img/favicon.ico</icon>
+    <icon>https://krok.tools/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[Welcome to Krok]]></title>
         <id>welcome</id>
-        <link href="https://krok-o.github.io/blog/welcome"/>
+        <link href="https://krok.tools/blog/welcome"/>
         <updated>2022-11-27T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Hello and welcome to Krok. These are a serious of posts which will tell the story of Krok.]]></summary>
         <content type="html"><![CDATA[<p>Hello and welcome to Krok. These are a serious of posts which will tell the story of <a href="https://github.com/krok-o" target="_blank" rel="noopener noreferrer">Krok</a>.</p>]]></content>
